@@ -1,56 +1,67 @@
 import pandas as pd
 import yfinance as yf
 from tqdm import tqdm
-import time
 
-# --- CONFIGURACIÓN ---
-esg_csv = '/workspaces/ginappedrosa_project_test/sp500_esg_ceo_info-filtered.csv'   # tu CSV ESG
-output_csv = 'dataset_final_completo.csv'
-start_date = '2018-01-01'
-end_date = '2024-09-01'
-chunk_size = 50  # cantidad de tickers por batch
-
-# --- CARGAR ESG ---
+# CSV de Sustainalytics ESG
+esg_csv = "/workspaces/ginappedrosa_project_test/sp500_esg_ceo_info-filtered.csv"  # asegúrate de que está en tu carpeta
 esg_df = pd.read_csv(esg_csv)
-tickers = esg_df['Ticker'].str.upper().str.strip().tolist()
 
-# --- FUNCIÓN PARA DESCARGAR DATOS ---
-def download_tickers_batch(ticker_list):
-    batch_data = []
-    for t in tqdm(ticker_list, desc="Descargando batch"):
-        try:
-            df = yf.download(t, start=start_date, end=end_date, progress=False, auto_adjust=True)
-            if not df.empty:
-                df.reset_index(inplace=True)
-                df['Ticker'] = t
-                batch_data.append(df)
-            time.sleep(0.1)  # evitar rate limit
-        except Exception as e:
-            print(f"Error con {t}: {e}")
-    if batch_data:
-        return pd.concat(batch_data, ignore_index=True)
-    else:
-        return pd.DataFrame()
+print("Columnas CSV ESG:", esg_df.columns)
+print("Número de tickers en CSV:", esg_df["Ticker"].nunique())
 
-# --- DESCARGAR EN BATCHES ---
+# Seleccionamos solo 50 tickers de prueba
+tickers = esg_df["Ticker"].dropna().unique().tolist()[:50]
+
+start_date = "2018-01-01"
+end_date = "2023-12-31"
+
 all_data = []
-for i in range(0, len(tickers), chunk_size):
-    batch = tickers[i:i+chunk_size]
-    batch_df = download_tickers_batch(batch)
-    if not batch_df.empty:
-        all_data.append(batch_df)
-    print(f"Batch {i//chunk_size + 1} completado, filas acumuladas: {sum([len(d) for d in all_data])}")
 
-# --- CONCATENAR TODOS LOS DATOS ---
-if all_data:
-    yf_df = pd.concat(all_data, ignore_index=True)
-else:
-    raise ValueError("No se descargó ningún dato de yfinance.")
+# Descargar datos de 50 en 50 (batch)
+batch_size = 50
+for i in range(0, len(tickers), batch_size):
+    batch = tickers[i:i+batch_size]
+    print(f"\nDescargando batch {i//batch_size + 1} de {len(tickers)//batch_size + 1}...")
+    
+    try:
+        df = yf.download(
+            batch,
+            start=start_date,
+            end=end_date,
+            progress=False,
+            auto_adjust=False  # 🌸 aseguramos que baje "Adj Close"
+        )
+        
+        # Pasamos de columnas multi-índice a columnas simples
+        df = df.stack(level=1).reset_index()
+        df.rename(columns={"level_1": "Ticker"}, inplace=True)
+        
+        all_data.append(df)
+    except Exception as e:
+        print(f"⚠️ Error en batch {i//batch_size + 1}: {e}")
 
-# --- MERGE CON ESG ---
-final_df = yf_df.merge(esg_df, on='Ticker', how='left')
+# Unimos todos los datos financieros
+fin_df = pd.concat(all_data, ignore_index=True)
 
-# --- GUARDAR CSV FINAL ---
-final_df.to_csv(output_csv, index=False)
-print(f"Dataset final creado: {output_csv}")
-print(f"Shape final: {final_df.shape}")
+print(f"\n✅ Datos financieros descargados: {fin_df.shape}")
+
+# Unimos con ESG (por ticker)
+dataset_final = pd.merge(fin_df, esg_df, on="Ticker", how="inner")
+
+# Creamos features de volatilidad
+dataset_final["Daily_Return"] = dataset_final.groupby("Ticker")["Adj Close"].pct_change()
+dataset_final["Daily_Volatility"] = (
+    dataset_final.groupby("Ticker")["Daily_Return"]
+    .rolling(5)
+    .std()
+    .reset_index(0, drop=True)
+)
+
+# Guardar CSV final
+dataset_final.to_csv("dataset_final.csv", index=False)
+
+print(f"\n🌸 Dataset guardado como 'dataset_final.csv'")
+print("Shape final:", dataset_final.shape)
+print("\nPrimeras filas:\n", dataset_final.head())
+
+dataset_final.info()
