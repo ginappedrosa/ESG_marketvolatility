@@ -20,7 +20,8 @@ Dataset description:
 
 The dataset_final.csv contains the following columns:
 
-------------------------------------------------------------------------------------------------------- |
+| Column                | Description                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------- |
 | **Date**              | Trading date of the stock.                                                                              |
 | **Ticker**            | Stock symbol of the company.                                                                            |
 | **Adj Close**         | Adjusted closing price (accounts for splits/dividends).                                                 |
@@ -41,6 +42,7 @@ The dataset_final.csv contains the following columns:
 | **Year**              | Year of the trading data.                                                                               |
 | **Daily\_Return**     | Daily percentage change in adjusted closing price. (Target for prediction)                              |
 | **Daily\_Volatility** | Rolling standard deviation of daily returns, measuring stock price variability. (Target for prediction) |
+
 
 Tickers and corresponding companies:
 
