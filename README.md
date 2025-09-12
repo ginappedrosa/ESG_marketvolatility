@@ -35,10 +35,10 @@ The dataset_final.csv contains the following columns:
 | **Environment Score** | Environmental performance score.                                                                        |
 | **Social Score**      | Social responsibility performance score.                                                                |
 | **ESG Score Date**    | Date when the ESG score was assigned or updated.                                                        |
-| **ESG Status**        | Current ESG rating status (e.g., confirmed, pending).                                                   |
+| **ESG Status**        | Current ESG rating status.                                              |
 | **CEO Full Name**     | Full name of the company's CEO.                                                                         |
 | **CEO Gender**        | Gender of the CEO.                                                                                      |
-| **CEO Status**        | Status of the CEO (active, retired, etc.).                                                              |
+| **CEO Status**        | This is used to identify whether obtaining CEO info was succesful                                                              |
 | **Year**              | Year of the trading data.                                                                               |
 | **Daily\_Return**     | Daily percentage change in adjusted closing price. (Target for prediction)                              |
 | **Daily\_Volatility** | Rolling standard deviation of daily returns, measuring stock price variability. (Target for prediction) |
