@@ -1,0 +1,427 @@
+Ticker,ESG Score,Governance Score,Environment Score,Social Score,ESG Score Date,ESG Status,CEO Full Name,CEO Gender,CEO Status,Year
+MMM,33.61,7.72,12.33,13.56,01/08/2022,success,Mr. Michael F. Roman,male,success,22
+AOS,25.43,6.27,7.29,11.87,01/01/2023,success,Mr. Kevin J. Wheeler,male,success,23
+ABT,24.98,8.36,3.03,13.59,01/08/2022,success,Mr. Robert B. Ford,male,success,22
+ABBV,27.84,9.95,1.12,16.77,01/08/2022,success,Mr. Richard A. Gonzalez,male,success,22
+ACN,9.71,4.83,0.29,4.58,01/08/2022,success,Ms. Julie T. Spellman Sweet,female,success,22
+ADM,36.4,5.01,18.23,13.16,01/08/2022,success,Mr. Juan Ricardo Luciano,male,success,22
+ADBE,12.46,4.64,1.89,5.93,01/08/2022,success,Mr. Shantanu  Narayen,male,success,22
+ADP,13.97,5.94,1.07,6.96,01/08/2022,success,Ms. Maria  Black,female,success,22
+AES,34.15,6.47,16.48,11.2,01/01/2023,success,Mr. Andres Ricardo Gluski Weilert,male,success,23
+AFL,17.3,9.57,0.47,7.26,01/08/2022,success,Mr. Daniel Paul Amos,male,success,22
+A,15.24,6.26,0.34,8.65,01/01/2023,success,Mr. Michael R. McMullen,male,success,23
+APD,10.81,3.59,5.94,1.28,01/08/2022,success,Mr. Seifollah  Ghasemi,male,success,22
+AKAM,16.55,6.72,2.93,6.9,01/01/2023,success,Dr. F. Thomson Leighton,male,Manually added gender,23
+ALB,28.8,7.73,15.53,5.54,01/01/2023,success,Mr. Jerry Kent Masters Jr.,male,success,23
+ARE,13.85,6.27,3.91,3.66,01/01/2023,success,Mr. Peter M. Moglia,male,success,23
+ALLE,23.72,6.43,12.75,4.54,01/01/2023,success,Mr. John H. Stone,male,success,23
+LNT,21.87,6.18,10.04,5.65,01/01/2023,success,Mr. John O. Larsen,male,success,23
+ALL,19.22,9.94,1.44,7.85,01/08/2022,success,Mr. Thomas Joseph Wilson II,male,success,22
+GOOGL,24.14,11.39,1.66,11.1,01/08/2022,success,Mr. Sundar  Pichai,male,success,22
+MO,23.99,6.35,4.66,12.98,01/08/2022,success,Mr. William F. Gifford Jr.,male,success,22
+AMZN,30.28,9.89,5.59,14.8,01/08/2022,success,Mr. Andrew R. Jassy,male,success,22
+AEE,29.53,5.49,14.11,9.93,01/01/2023,success,Mr. Martin J. Lyons Jr.,male,success,23
+AAL,29.1,5.26,11.53,12.31,01/01/2023,success,Mr. Robert D. Isom Jr.,male,success,23
+AEP,25.81,5.43,12.84,7.54,01/08/2022,success,Ms. Julia A. Sloat,female,success,22
+AXP,18.38,9.95,0.05,8.37,01/08/2022,success,Mr. Stephen Joseph Squeri,male,success,22
+AIG,25.32,13.79,1.87,9.67,01/08/2022,success,Mr. Peter Salvatore Zaffino,male,success,22
+AMT,10.94,5.02,2.36,3.56,01/08/2022,success,Mr. Thomas A. Bartlett CPA,male,success,22
+AWK,21.89,5.27,9.04,7.58,01/01/2023,success,Ms. M. Susan Hardwick,female,success,23
+AMP,22.61,12.82,2.57,7.22,01/01/2023,success,Mr. James M. Cracchiolo,male,success,23
+AME,24.08,6.92,8.65,8.51,01/01/2023,success,Mr. David A. Zapico,male,success,23
+AMGN,22.04,7.89,0.69,13.46,01/08/2022,success,Mr. Robert A. Bradway,male,success,22
+APH,21.35,7.81,8.04,5.49,01/01/2023,success,Mr. Richard Adam Norwitt,male,success,23
+ADI,23.78,5.9,10.13,7.74,01/08/2022,success,Mr. Vincent T. Roche,male,success,22
+ANSS,13.05,4.86,0.86,7.32,01/01/2023,success,Dr. Ajei S. Gopal Ph.D.,male,Manually added gender,23
+AAPL,16.68,9.18,0.65,6.86,01/08/2022,success,Mr. Timothy D. Cook,male,success,22
+AMAT,11.56,5.1,3.84,2.62,01/08/2022,success,Mr. Gary E. Dickerson,male,success,22
+APTV,11.51,5.27,2.49,3.75,01/01/2023,success,Mr. Kevin P. Clark,male,success,23
+ACGL,20.75,11.98,1.47,7.31,01/01/2023,success,Mr. Marc  Grandisson,male,success,23
+ANET,16.4,7.11,0.4,8.88,01/01/2023,success,Ms. Jayshree V. Ullal,female,success,23
+AJG,21.28,10.47,0.11,10.7,01/01/2023,success,Mr. J. Patrick Gallagher Jr.,male,success,23
+AIZ,24.48,11.27,1.63,11.58,01/01/2023,success,Mr. Keith Warner Demmings,male,success,23
+T,22.07,6.66,2.27,13.15,01/08/2022,success,Mr. John T. Stankey,male,success,22
+ATO,34.79,6.54,14.83,13.42,01/01/2023,success,Mr. John Kevin Akers,male,success,23
+ADSK,16.05,4.44,3.41,8.19,01/01/2023,success,Dr. Andrew  Anagnost,male,Manually added gender,23
+AZO,11.04,3.83,0.11,7.09,01/01/2023,success,Mr. William C. Rhodes III,male,success,23
+AVB,10.53,4.56,2.95,3.02,01/08/2022,success,Mr. Benjamin W. Schall,male,success,22
+AVY,15.38,3.67,10.58,1.14,01/01/2023,success,Mr. Deon M. Stander,male,success,23
+BALL,10.81,3.79,5.92,1.11,01/01/2023,success,Mr. Daniel William Fisher,male,success,23
+BAC,27.15,11.16,1.62,14.37,01/08/2022,success,Mr. Brian Thomas Moynihan,male,success,22
+BBWI,15.5,4.48,2.59,8.43,01/01/2023,success,Ms. Gina R. Boswell,female,success,23
+BAX,23.74,7.31,2.83,13.6,01/08/2022,success,Mr. Jose E. Almeida,male,success,22
+BDX,26.74,7.48,3.7,15.56,01/08/2022,success,Mr. Thomas E. Polen Jr.,male,success,22
+WRB,21.97,12.04,1.97,7.95,01/01/2023,success,Mr. William Robert Berkley Jr.,male,success,23
+BRK-B,16.02,11.65,0.58,3.8,01/08/2022,success,Mr. Warren E. Buffett,male,success,22
+BBY,14.15,4.75,2.22,7.19,01/01/2023,success,Ms. Corie Sue Barry,female,success,23
+BIO,16.87,7.19,1.44,8.25,01/01/2023,success,Mr. Norman D. Schwartz,male,success,23
+BIIB,21.05,7.81,0.02,13.22,01/08/2022,success,Mr. Christopher A. Viehbacher,male,success,22
+BLK,20.57,9.48,1.49,9.61,01/08/2022,success,Mr. Laurence Douglas Fink,male,success,22
+BX,23.63,11.16,2.52,9.95,01/01/2023,success,"Mr. Stephen Allen Schwarzman B.A., M.B.A.",male,success,23
+BK,21.48,11.18,1.13,9.17,01/08/2022,success,Mr. Robin Antony Vince,male,success,22
+BA,34.68,7.87,7.08,19.72,01/08/2022,success,Mr. David L. Calhoun,male,success,22
+BKNG,22.33,7.83,2.02,12.48,01/08/2022,success,Mr. Glenn D. Fogel,male,success,22
+BWA,12.78,5.71,2.86,4.21,01/01/2023,success,Mr. Frederic B. Lissalde,male,success,23
+BXP,12.51,5.45,2.54,4.52,01/01/2023,success,Mr. Owen David Thomas,male,success,23
+BSX,26.33,10.63,3.0,12.69,01/08/2022,success,Mr. Michael F. Mahoney,male,success,22
+BMY,22.83,7.56,0.34,14.93,01/08/2022,success,Dr. Giovanni  Caforio M.D.,male,Manually added gender,22
+AVGO,22.41,6.66,8.82,6.92,01/08/2022,success,Mr. Hock E. Tan,male,success,22
+BR,16.21,6.38,0.82,9.01,01/01/2023,success,Mr. Timothy C. Gokey,male,success,23
+BRO,21.43,10.71,0.16,10.56,01/01/2023,success,Mr. J. Powell Brown C.P.C.U.,male,success,23
+BF-B,22.0,5.4,7.18,9.42,01/01/2023,success,Mr. Lawson E. Whiting,male,success,23
+BG,34.09,5.27,15.25,13.57,01/01/2023,success,Mr. Gregory A. Heckman,male,success,23
+CHRW,20.07,5.63,5.15,9.29,01/01/2023,success,Mr. David P. Bozeman,male,success,23
+CDNS,12.19,4.72,1.41,6.06,01/01/2023,success,Dr. Anirudh  Devgan Ph.D.,male,Manually added gender,23
+CPT,15.94,7.34,4.47,4.13,01/01/2023,success,Mr. Richard J. Campo,male,success,23
+CPB,23.55,4.47,10.93,8.15,01/01/2023,success,Mr. Mark A. Clouse,male,success,23
+COF,22.62,9.22,0.07,13.33,01/08/2022,success,Mr. Richard D. Fairbank,male,success,22
+CAH,12.28,4.86,1.51,5.9,01/08/2022,success,Mr. Jason M. Hollar,male,success,22
+KMX,12.1,3.99,0.09,8.02,01/01/2023,success,Mr. William D. Nash,male,success,23
+CCL,23.69,3.82,10.01,9.86,01/08/2022,success,Mr. Joshua Ian Weinstein,male,success,22
+CBOE,20.95,10.64,2.73,7.58,01/01/2023,success,Mr. Frederic J. Tomczyk,male,success,23
+CBRE,6.84,3.17,1.27,2.4,01/01/2023,success,Mr. Robert E. Sulentic,male,success,23
+CDW,9.23,3.54,2.4,3.29,01/01/2023,success,Ms. Christine A. Leahy,female,success,23
+CE,29.27,6.47,15.09,7.71,01/01/2023,success,Ms. Lori J. Ryerkerk BS,female,success,23
+CNC,20.61,7.22,0.09,13.28,01/01/2023,success,Ms. Sarah M. London,female,success,23
+CNP,25.56,5.42,10.58,9.56,01/01/2023,success,"Mr. David John Lesar B.Sc., C.P.A., M.B.A.",male,success,23
+CF,30.03,5.49,16.82,7.73,01/01/2023,success,Mr. W. Anthony Will,male,success,23
+SCHW,24.01,11.79,2.08,10.14,01/08/2022,success,Mr. Walter William Bettinger II,male,success,22
+CHTR,26.53,7.86,5.57,13.1,01/08/2022,success,Mr. Christopher L. Winfrey,male,success,22
+CVX,37.61,10.29,18.61,8.71,01/08/2022,success,Mr. Michael K. Wirth,male,success,22
+CMG,23.64,4.69,5.5,13.45,01/01/2023,success,Mr. Brian R. Niccol,male,success,23
+CB,23.85,10.58,1.67,11.59,01/08/2022,success,Mr. Evan G. Greenberg,male,success,22
+CHD,19.79,6.62,6.53,6.63,01/01/2023,success,Mr. Matthew Thomas Farrell,male,success,23
+CINF,25.62,12.83,1.82,10.97,01/01/2023,success,"Mr. Steven Justus Johnston C.F.A., CERA, FCAS, MAAA",male,success,23
+CTAS,18.25,5.88,3.21,9.17,01/01/2023,success,Mr. Todd M. Schneider,male,success,23
+CSCO,12.07,6.45,0.03,5.59,01/08/2022,success,Mr. Charles H. Robbins,male,success,22
+C,26.68,11.82,1.75,13.11,01/08/2022,success,Ms. Jane Nind Fraser,female,success,22
+CFG,23.46,11.35,1.96,10.15,01/01/2023,success,Mr. Bruce Winfield Van Saun,male,success,23
+CLX,21.14,5.61,6.33,9.2,01/01/2023,success,Ms. Linda  Rendle,female,success,23
+CME,14.59,6.24,2.13,6.21,01/08/2022,success,Mr. Terrence A. Duffy,male,success,22
+CMS,21.29,5.7,9.8,5.78,01/01/2023,success,Mr. Garrick J. Rochow,male,success,23
+KO,22.56,4.95,7.88,9.72,01/08/2022,success,Mr. James Robert B. Quincey,male,success,22
+CTSH,14.38,5.63,1.11,7.64,01/08/2022,success,Mr. Ravi Kumar Singisetti,male,success,22
+CL,22.12,6.72,6.06,9.35,01/08/2022,success,Mr. Noel R. Wallace,male,success,22
+CMCSA,24.76,8.09,4.56,12.11,01/08/2022,success,Mr. Brian L. Roberts,male,success,22
+CMA,25.97,12.66,2.31,10.99,01/01/2023,success,Mr. Curtis Chatman Farmer,male,success,23
+CAG,31.73,4.88,10.96,15.89,01/01/2023,success,Mr. Sean M. Connolly,male,success,23
+COP,34.86,7.87,17.29,9.71,01/08/2022,success,Mr. Ryan M. Lance,male,success,22
+ED,23.09,6.29,7.46,9.34,01/01/2023,success,Mr. Timothy P. Cawley,male,success,23
+STZ,25.79,5.4,10.35,10.04,01/08/2022,success,Mr. William A. Newlands,male,success,22
+COO,19.5,6.03,2.7,10.76,01/01/2023,success,Mr. Albert G. White III,male,success,23
+CPRT,18.05,5.41,1.61,11.03,01/01/2023,success,Mr. A. Jayson Adair,male,success,23
+GLW,19.42,6.87,7.3,5.24,01/08/2022,success,Mr. Wendell P. Weeks,male,success,22
+CSGP,26.94,8.38,5.45,13.12,01/01/2023,success,Mr. Andrew C. Florance,male,success,23
+COST,24.19,5.72,7.26,11.21,01/08/2022,success,Mr. W. Craig Jelinek,male,success,22
+CTRA,46.02,8.78,24.13,13.11,01/01/2023,success,Mr. Thomas E. Jorden,male,success,23
+CCI,13.2,5.06,5.21,2.92,01/08/2022,success,Mr. Jay A. Brown,male,success,22
+CSX,20.09,3.44,7.45,9.19,01/08/2022,success,Mr. Joseph R. Hinrichs,male,success,22
+CMI,19.36,6.06,5.8,7.5,01/08/2022,success,Ms. Jennifer W. Rumsey,female,success,22
+CVS,22.86,6.44,0.03,16.39,01/08/2022,success,Ms. Karen Sue Lynch,female,success,22
+DHI,21.74,5.74,9.35,6.66,01/01/2023,success,Mr. Paul J. Romanowski,male,success,23
+DHR,11.73,5.22,1.35,5.16,01/08/2022,success,Mr. Rainer M. Blair,male,success,22
+DRI,27.99,4.57,8.43,15.0,01/01/2023,success,Mr. Ricardo  Cardenas,male,success,23
+DVA,22.56,8.42,0.07,14.08,01/01/2023,success,Mr. Javier J. Rodriguez,male,success,23
+DE,16.64,6.55,3.19,6.9,01/08/2022,success,Mr. John C. May II,male,success,22
+DAL,26.13,5.15,9.52,11.46,01/08/2022,success,Mr. Edward H. Bastian,male,success,22
+XRAY,15.78,6.71,2.21,6.86,01/01/2023,success,Mr. Simon D. Campion,male,success,23
+DVN,36.69,7.83,20.71,8.15,01/01/2023,success,Mr. Richard E. Muncrief,male,success,23
+DXCM,23.7,8.08,5.39,10.24,01/01/2023,success,Mr. Kevin Ronald Sayer,male,success,23
+DLR,12.61,7.0,2.8,2.81,01/01/2023,success,Mr. Andrew P. Power,male,success,23
+DFS,22.57,10.58,0.13,11.87,01/08/2022,success,Mr. John B. Owen,male,success,22
+DIS,14.88,6.9,0.06,7.92,01/08/2022,success,Mr. Robert A. Iger,male,success,22
+DG,17.36,5.53,3.27,8.56,01/01/2023,success,Mr. Todd J. Vasos,male,success,23
+DLTR,14.87,4.06,3.4,7.41,01/01/2023,success,Mr. Richard W. Dreiling,male,success,23
+D,25.38,5.73,11.11,8.55,01/08/2022,success,Mr. Robert M. Blue,male,success,22
+DPZ,31.02,6.62,7.73,16.68,01/01/2023,success,Mr. Russell J. Weiner,male,success,23
+DOV,25.27,5.77,7.12,12.38,01/01/2023,success,Mr. Richard Joseph Tobin,male,success,23
+DTE,30.09,4.77,15.28,10.04,01/01/2023,success,Mr. Gerardo  Norcia,male,success,23
+DUK,27.63,4.56,14.49,8.57,01/08/2022,success,Ms. Lynn J. Good,female,success,22
+DD,28.95,7.39,13.44,8.12,01/08/2022,success,Mr. Edward D. Breen,male,success,22
+EMN,24.6,7.2,11.98,5.42,01/01/2023,success,Mr. Mark J. Costa,male,success,23
+ETN,17.85,5.72,5.37,6.76,01/08/2022,success,Mr. Craig  Arnold,male,success,22
+EBAY,17.11,6.84,0.93,9.33,01/08/2022,success,Mr. Jamie J. Iannone,male,success,22
+ECL,24.09,6.17,9.48,8.44,01/08/2022,success,Mr. Christophe  Beck,male,success,22
+EIX,27.43,5.5,10.73,11.2,01/08/2022,success,Dr. Pedro J. Pizarro,male,Manually added gender,22
+EW,19.33,7.63,2.86,8.85,01/01/2023,success,Mr. Bernard J. Zovighian,male,success,23
+EA,10.36,4.72,0.13,5.52,01/08/2022,success,Mr. Andrew  Wilson,male,success,22
+LLY,32.4,11.56,3.43,17.4,01/08/2022,success,Mr. David A. Ricks,male,success,22
+EMR,29.47,7.0,10.13,12.34,01/08/2022,success,Mr. Surendralal Lanca Karsanbhai,male,success,22
+ETR,29.57,6.41,16.31,6.85,01/01/2023,success,Mr. Andrew S. Marsh,male,success,23
+EOG,36.25,7.73,20.39,8.13,01/08/2022,success,Mr. Ezra Y. Yacob,male,success,22
+EQT,36.64,7.54,19.03,10.08,01/01/2023,success,Mr. Toby Z. Rice,male,success,23
+EFX,25.76,6.98,0.16,18.63,01/01/2023,success,Mr. Mark W. Begor,male,success,23
+EQIX,11.79,5.65,2.63,3.51,01/08/2022,success,Mr. Charles J. Meyers,male,success,22
+EQR,11.16,5.21,2.89,3.06,01/01/2023,success,Mr. Mark J. Parrell,male,success,23
+ESS,12.33,6.13,3.5,2.69,01/01/2023,success,Ms. Angela L. Kleiman,female,success,23
+EL,25.91,7.68,6.88,11.34,01/08/2022,success,Mr. Fabrizio  Freda,male,success,22
+ES,18.73,5.77,4.8,8.16,01/01/2023,success,Mr. Joseph R. Nolan Jr.,male,success,23
+EXC,24.39,6.59,8.83,8.97,01/08/2022,success,Mr. Calvin  Butler Jr.,male,success,22
+EXPE,25.7,9.81,2.11,13.79,01/01/2023,success,Mr. Peter Maxwell Kern,male,success,23
+EXPD,15.82,4.64,3.83,7.35,01/01/2023,success,Mr. Jeffrey S. Musser,male,success,23
+EXR,14.08,5.99,3.81,4.28,01/01/2023,success,Mr. Joseph Daniel Margolis J.D.,male,success,23
+XOM,36.47,8.1,18.55,9.82,01/08/2022,success,Mr. Darren W. Woods,male,success,22
+FFIV,19.18,5.42,1.26,12.49,01/01/2023,success,Mr. Francois  Locoh-Donou,male,success,23
+FDS,20.44,6.61,2.94,10.88,01/01/2023,success,Mr. Frederick Philip Snow,male,success,23
+FAST,26.4,7.05,10.69,8.66,01/01/2023,success,Mr. Daniel L. Florness,male,success,23
+FDX,20.45,5.84,5.29,9.32,01/08/2022,success,Mr. Rajesh  Subramaniam,male,success,22
+FITB,17.44,7.36,1.41,8.68,01/01/2023,success,Mr. Timothy N. Spence,male,success,23
+FE,29.51,6.84,12.96,9.72,01/01/2023,success,Mr. Brian X. Tierney,male,success,23
+FIS,18.08,5.68,1.27,11.14,01/08/2022,success,Ms. Stephanie L. Ferris,female,success,22
+FLT,18.11,6.16,2.88,9.08,01/01/2023,success,Mr. Ronald F. Clarke,male,success,23
+FMC,32.74,7.47,16.18,9.09,01/01/2023,success,Mr. Mark A. Douglas,male,success,23
+F,29.95,9.35,9.27,11.34,01/08/2022,success,Mr. James D. Farley Jr.,male,success,22
+FTNT,19.13,5.71,1.23,12.19,01/01/2023,success,Mr. Ken  Xie,male,success,23
+FTV,34.76,4.7,16.09,13.97,01/01/2023,success,Mr. James A. Lico,male,success,23
+BEN,18.18,7.18,1.12,9.88,01/01/2023,success,Ms. Jennifer M. Johnson,female,success,23
+FCX,31.94,5.22,16.56,10.15,01/01/2023,success,Mr. Richard C. Adkerson,male,success,23
+GRMN,18.54,5.28,5.4,7.86,01/01/2023,success,Mr. Clifton  Albert Pemble,male,success,23
+IT,21.78,6.2,0.13,15.44,01/01/2023,success,Mr. Eugene A. Hall,male,success,23
+GEN,14.98,4.81,0.7,9.47,01/01/2023,success,Mr. Vincent  Pilette,male,success,23
+GD,34.88,6.87,8.48,19.52,01/08/2022,success,Ms. Phebe N. Novakovic,female,success,22
+GE,40.71,11.58,14.09,15.04,01/08/2022,success,Mr. H. Lawrence Culp Jr.,male,success,22
+GIS,21.51,4.13,8.45,8.94,01/08/2022,success,Mr. Jeffrey L. Harmening,male,success,22
+GM,30.89,7.69,10.28,12.92,01/08/2022,success,Ms. Mary T. Barra,female,success,22
+GPC,12.62,3.78,3.62,5.23,01/01/2023,success,Mr. Paul D. Donahue,male,success,23
+GILD,22.08,8.01,0.03,14.04,01/08/2022,success,Mr. Daniel P.  O'Day,male,success,22
+GL,20.25,10.51,1.58,8.16,01/01/2023,success,Mr. Frank Martin Svoboda,male,success,23
+GPN,19.03,6.8,1.25,10.98,01/01/2023,success,Mr. Cameron M. Bready CPA,male,success,23
+GS,26.16,12.24,1.25,12.67,01/08/2022,success,Mr. David  Solomon,male,success,22
+HAL,23.8,6.32,8.89,8.59,01/08/2022,success,Mr. Jeffrey Allen Miller,male,success,22
+HIG,16.17,8.67,1.5,5.99,01/01/2023,success,Mr. Christopher Jerome Swift CPA,male,success,23
+HAS,7.11,4.2,0.04,2.88,01/01/2023,success,Mr. Christian  Cocks,male,success,23
+HCA,28.24,7.4,3.5,17.34,01/08/2022,success,Mr. Samuel N. Hazen,male,success,22
+PEAK,9.73,4.49,3.01,2.22,01/01/2023,success,Mr. Scott M. Brinker,male,success,23
+HSIC,13.37,5.64,2.14,5.59,01/01/2023,success,Mr. Stanley M. Bergman,male,success,23
+HSY,27.43,5.24,11.3,10.89,01/01/2023,success,Ms. Michele Gross Buck,female,success,23
+HES,36.05,6.75,22.11,7.2,01/01/2023,success,Mr. John B. Hess,male,success,23
+HPE,11.94,6.25,0.76,4.92,01/08/2022,success,Mr. Antonio Fabio Neri,male,success,22
+HLT,17.44,3.67,7.0,6.77,01/01/2023,success,Mr. Christopher J. Nassetta,male,success,23
+HOLX,28.24,10.18,4.79,13.27,01/01/2023,success,Mr. Stephen P. MacMillan,male,success,23
+HD,12.54,3.63,3.4,5.51,01/08/2022,success,Mr. Edward P. Decker,male,success,22
+HON,29.31,8.54,10.58,10.19,01/08/2022,success,Mr. Vimal M. Kapur,male,success,22
+HRL,29.91,6.0,13.23,10.68,01/01/2023,success,Mr. James P. Snee,male,success,23
+HST,13.94,5.05,3.25,5.64,01/01/2023,success,Mr. James F. Risoleo,male,success,23
+HPQ,10.93,5.82,0.11,5.0,01/08/2022,success,Mr. Enrique J. Lores,male,success,22
+HUBB,25.29,5.2,9.56,10.53,01/01/2023,success,Mr. Gerben W. Bakker,male,success,23
+HUM,22.37,5.94,0.01,16.43,01/08/2022,success,Mr. Bruce Dale Broussard,male,success,22
+HBAN,20.38,7.63,1.96,10.79,01/01/2023,success,Mr. Stephen D. Steinour,male,success,23
+IBM,14.77,7.64,0.47,6.67,01/08/2022,success,Mr. Arvind  Krishna,male,success,22
+IEX,26.82,5.72,8.1,13.0,01/01/2023,success,Mr. Eric D. Ashleman,male,success,23
+IDXX,19.45,9.05,3.3,7.1,01/01/2023,success,Mr. Jonathan J. Mazelsky,male,success,23
+ITW,19.6,6.22,4.31,9.07,01/08/2022,success,Mr. E. Scott Santi,male,success,22
+ILMN,10.9,6.21,0.98,3.72,01/01/2023,success,Mr. Jacob  Thaysen Ph.D.,male,success,23
+INCY,24.12,7.11,1.45,15.55,01/01/2023,success,Mr. Herve  Hoppenot,male,success,23
+INTC,17.26,6.96,4.36,5.94,01/08/2022,success,Mr. Patrick P. Gelsinger,male,success,22
+ICE,16.34,6.68,1.68,7.98,01/08/2022,success,Mr. Jeffrey C. Sprecher,male,success,22
+IFF,22.31,6.5,10.39,5.42,01/01/2023,success,Mr. Franklin K. Clyburn Jr.,male,success,23
+IP,23.71,4.95,14.26,4.5,01/01/2023,success,Mr. Mark Stephan Sutton,male,success,23
+IPG,10.43,5.28,0.04,5.11,01/01/2023,success,Mr. Philippe  Krakowsky,male,success,23
+INTU,16.2,4.7,0.97,10.52,01/08/2022,success,Mr. Sasan K. Goodarzi,male,success,22
+ISRG,23.74,9.6,4.37,9.78,01/08/2022,success,Dr. Gary S. Guthart Ph.D.,male,Manually added gender,22
+IVZ,20.33,9.76,0.7,9.87,01/01/2023,success,Mr. Andrew Ryan Schlossberg,male,success,23
+IQV,19.14,7.22,1.3,10.62,01/01/2023,success,Mr. Ari  Bousbib,male,success,23
+IRM,14.74,6.0,5.0,3.74,01/01/2023,success,"Mr. William L. Meaney BSc, MEng, MSIA",male,success,23
+JBHT,13.86,4.86,3.0,6.01,01/01/2023,success,Mr. John N. Roberts III,male,success,23
+JKHY,15.45,5.22,0.78,9.45,01/01/2023,success,Mr. David B. Foss,male,success,23
+J,22.37,5.62,5.29,11.46,01/08/2022,success,Mr. Robert V. Pragada,male,success,22
+JNJ,25.08,8.55,0.74,15.79,01/08/2022,success,Mr. Joaquin  Duato,male,success,22
+JCI,14.7,5.25,4.89,4.55,01/08/2022,success,Mr. George R. Oliver,male,success,22
+JPM,29.02,11.73,1.11,16.18,01/08/2022,success,Mr. James  Dimon,male,success,22
+JNPR,16.59,6.41,1.66,8.52,01/01/2023,success,Mr. Rami  Rahim,male,success,23
+K,26.84,4.58,7.4,14.87,01/08/2022,success,Mr. Steven A. Cahillane,male,success,22
+KEY,23.14,10.17,1.89,11.08,01/01/2023,success,Mr. Christopher Marrott Gorman,male,success,23
+KEYS,9.31,5.04,2.03,2.24,01/01/2023,success,Mr. Satish C. Dhanasekaran,male,success,23
+KMB,22.05,6.23,8.05,7.77,01/08/2022,success,Mr. Michael D. Hsu,male,success,22
+KIM,12.14,5.53,3.7,2.91,01/01/2023,success,Mr. Conor C. Flynn,male,success,23
+KMI,18.55,3.48,7.75,7.32,01/08/2022,success,Ms. Kimberly Allen Dang,female,success,22
+KLAC,16.79,4.91,7.13,4.76,01/01/2023,success,Mr. Richard P. Wallace,male,success,23
+KHC,35.3,6.63,14.38,14.29,01/08/2022,success,Mr. Miguel  Patricio,male,success,22
+KR,21.39,5.46,6.51,9.43,01/08/2022,success,Mr. William Rodney McMullen,male,success,22
+LH,18.81,7.13,0.13,11.55,01/01/2023,success,Mr. Adam H. Schechter,male,success,23
+LRCX,13.45,4.98,4.5,3.97,01/01/2023,success,Mr. Timothy M. Archer,male,success,23
+LVS,17.69,8.65,1.28,7.76,01/08/2022,success,Mr. Robert Glen Goldstein,male,success,22
+LDOS,11.67,5.39,1.29,4.99,01/01/2023,success,Mr. Thomas A. Bell,male,success,23
+LEN,23.11,5.47,8.89,8.77,01/01/2023,success,Mr. Stuart A. Miller,male,success,23
+LKQ,10.54,3.27,3.27,4.0,01/01/2023,success,Mr. Dominick P. Zarcone,male,success,23
+LMT,28.36,7.2,5.27,15.9,01/08/2022,success,Mr. James D. Taiclet Jr.,male,success,22
+L,16.48,11.63,0.59,4.25,01/01/2023,success,Mr. James S. Tisch,male,success,23
+LOW,11.49,3.15,3.7,4.63,01/08/2022,success,Mr. Marvin R. Ellison,male,success,22
+LULU,16.94,5.5,1.58,9.86,01/01/2023,success,Mr. Calvin R. McDonald,male,success,23
+LYB,24.59,5.82,16.64,2.13,01/08/2022,success,Mr. Peter Z. E. Vanacker,male,success,22
+MTB,26.16,11.19,2.2,12.77,01/08/2022,success,Mr. Rene F. Jones CPA,male,success,22
+MRO,42.01,7.96,23.91,10.14,01/01/2023,success,Mr. Lee M. Tillman,male,success,23
+MPC,28.7,5.79,15.91,7.01,01/08/2022,success,Mr. Michael J. Hennigan,male,success,22
+MAR,21.89,4.09,8.75,9.05,01/08/2022,success,Mr. Anthony G. Capuano Jr.,male,success,22
+MMC,19.45,11.49,0.06,7.9,01/08/2022,success,Mr. John Quinlan Doyle,male,success,22
+MLM,31.82,8.74,18.55,4.53,01/01/2023,success,Mr. C. Howard Nye,male,success,23
+MAS,22.44,7.21,9.44,5.8,01/01/2023,success,Mr. Keith J. Allman,male,success,23
+MA,16.98,8.57,0.32,8.1,01/08/2022,success,Mr. Michael  Miebach,male,success,22
+MKC,26.58,5.21,10.07,11.3,01/01/2023,success,Mr. Brendan M. Foley,male,success,23
+MCD,24.79,6.32,4.18,14.3,01/08/2022,success,Mr. Christopher J. Kempczinski,male,success,22
+MCK,15.17,5.52,2.29,7.37,01/08/2022,success,Mr. Brian S. Tyler Ph.D.,male,success,22
+MDT,22.66,7.63,2.39,12.63,01/08/2022,success,Mr. Geoffrey Straub Martha,male,success,22
+MRK,21.84,9.57,0.79,11.47,01/08/2022,success,Mr. Robert M. Davis J.D.,male,success,22
+META,32.54,10.51,1.02,21.01,01/08/2022,success,Mr. Mark Elliot Zuckerberg,male,success,22
+MET,14.95,9.41,0.73,4.82,01/08/2022,success,Mr. Michel Abbas Khalaf,male,success,22
+MTD,13.32,4.91,1.0,7.41,01/01/2023,success,Mr. Patrick K. Kaltenbach,male,success,23
+MGM,25.49,10.53,2.0,12.97,01/01/2023,success,Mr. William Joseph Hornbuckle IV,male,success,23
+MCHP,30.98,7.4,14.83,8.75,01/01/2023,success,Mr. Ganesh  Moorthy,male,success,23
+MU,17.44,5.77,6.6,5.07,01/08/2022,success,Mr. Sanjay  Mehrotra,male,success,22
+MSFT,15.24,5.33,1.53,8.39,01/08/2022,success,Mr. Satya  Nadella,male,success,22
+MAA,14.64,5.4,5.5,3.74,01/01/2023,success,Mr. H. Eric Bolton Jr.,male,success,23
+MHK,14.17,4.36,5.61,4.19,01/01/2023,success,Mr. Jeffrey S. Lorberbaum,male,success,23
+TAP,21.21,5.57,6.96,8.67,01/01/2023,success,Mr. Gavin D. K. Hattersley,male,success,23
+MDLZ,23.78,5.18,9.46,9.08,01/08/2022,success,Mr. Dirk  Van de Put,male,success,22
+MNST,28.03,5.03,12.43,10.58,01/08/2022,success,"Mr. Rodney Cyril Sacks H.Dip.Law, H.Dip.Tax",male,success,22
+MCO,10.5,5.25,0.02,5.23,01/01/2023,success,Mr. Robert Scott Fauber,male,success,23
+MS,22.22,9.73,0.72,11.76,01/08/2022,success,Mr. James Patrick Gorman,male,success,22
+MOS,34.06,8.66,14.35,11.05,01/01/2023,success,Mr. James C. O'Rourke P.Eng.,male,success,23
+MSI,14.31,5.39,2.21,6.7,01/01/2023,success,Mr. Gregory Q. Brown,male,success,23
+MSCI,16.01,7.59,1.65,6.77,01/01/2023,success,Mr. Henry A. Fernandez,male,success,23
+NDAQ,11.65,5.28,1.81,4.56,01/01/2023,success,Ms. Adena T. Friedman,female,success,23
+NTAP,15.49,5.98,2.58,6.93,01/01/2023,success,Mr. George  Kurian,male,success,23
+NFLX,16.25,9.34,0.09,6.83,01/08/2022,success,Mr. Theodore A. Sarandos,male,success,22
+NEM,20.33,5.16,6.92,8.24,01/01/2023,success,Mr. Thomas Ronald Palmer,male,success,23
+NWSA,11.61,7.02,0.02,4.58,01/01/2023,success,Mr. Robert J. Thomson,male,success,23
+NEE,27.53,5.83,14.05,7.64,01/08/2022,success,Mr. John W. Ketchum,male,success,22
+NKE,16.95,6.92,3.04,6.99,01/08/2022,success,Mr. John J. Donahoe II,male,success,22
+NI,29.51,5.18,14.08,10.25,01/01/2023,success,Mr. Lloyd M. Yates,male,success,23
+NDSN,26.66,5.59,9.26,11.8,01/01/2023,success,Mr. Sundaram  Nagarajan,male,success,23
+NSC,22.73,3.32,8.05,11.36,01/08/2022,success,Mr. Alan H. Shaw,male,success,22
+NTRS,23.86,10.17,1.87,11.83,01/01/2023,success,Mr. Michael Gerard O'Grady,male,success,23
+NOC,27.4,5.05,7.47,14.87,01/08/2022,success,Ms. Kathy J. Warden,female,success,22
+NCLH,26.22,4.12,11.98,10.12,01/01/2023,success,Mr. Harry J. Sommer,male,success,23
+NRG,32.16,5.67,17.08,9.42,01/01/2023,success,Mr. Mauricio  Gutierrez,male,success,23
+NUE,31.94,8.95,9.66,13.33,01/01/2023,success,Mr. Leon J. Topalian,male,success,23
+NVDA,13.45,6.03,2.26,5.16,01/08/2022,success,Mr. Jen-Hsun  Huang,male,success,22
+NVR,20.33,5.3,7.21,7.82,01/01/2023,success,Mr. Eugene James Bredow,male,success,23
+NXPI,21.6,5.55,8.67,7.39,01/08/2022,success,Mr. Kurt  Sievers,male,success,22
+ORLY,13.03,3.98,0.16,8.89,01/08/2022,success,Mr. Gregory D. Johnson,male,success,22
+OXY,43.23,6.59,24.61,12.04,01/08/2022,success,Ms. Vicki A. Hollub,female,success,22
+OMC,16.3,6.88,0.09,9.33,01/01/2023,success,Mr. John D. Wren,male,success,23
+ON,26.59,5.42,14.8,6.36,01/01/2023,success,Mr. Hassane S. El-Khoury,male,success,23
+OKE,26.1,3.31,11.78,11.01,01/01/2023,success,Mr. Pierce H. Norton II,male,success,23
+ORCL,13.92,5.69,0.52,7.71,01/08/2022,success,Ms. Safra Ada Catz,female,success,22
+PCAR,27.77,8.42,8.36,10.99,01/01/2023,success,Mr. R. Preston Feight,male,success,23
+PKG,16.75,3.76,11.65,1.35,01/01/2023,success,Mr. Mark W. Kowlzan,male,success,23
+PANW,13.92,5.6,0.7,7.62,01/01/2023,success,Mr. Nikesh  Arora C.F.A.,male,success,23
+PH,29.13,6.24,9.2,13.68,01/01/2023,success,Ms. Jennifer A. Parmentier,female,success,23
+PAYX,17.48,6.51,1.17,9.81,01/01/2023,success,Mr. John B. Gibson Jr.,male,success,23
+PYPL,15.99,5.36,0.71,9.92,01/08/2022,success,Mr. James Alexander Chriss,male,success,22
+PNR,22.74,6.07,6.66,10.01,01/01/2023,success,Mr. John L. Stauch,male,success,23
+PEP,15.94,4.48,4.91,6.55,01/08/2022,success,Mr. Ramon Luis Laguarta,male,success,22
+PFE,25.34,9.66,2.83,12.85,01/08/2022,success,"Dr. Albert  Bourla D.V.M., Ph.D.",male,Manually added gender,22
+PCG,35.26,6.2,8.41,20.65,01/08/2022,success,Ms. Patricia Kessler Poppe,female,success,22
+PM,23.79,9.49,3.57,10.73,01/08/2022,success,Mr. Jacek  Olczak,male,success,22
+PSX,29.35,5.96,16.39,7.0,01/08/2022,success,Mr. Mark E. Lashier,male,success,22
+PNW,31.06,5.97,14.86,10.23,01/01/2023,success,Mr. Jeffrey B. Guldner,male,success,23
+PXD,36.74,9.1,18.67,8.97,01/08/2022,success,Mr. Scott Douglas Sheffield,male,success,22
+PNC,22.34,8.86,1.73,11.75,01/08/2022,success,Mr. William S. Demchak,male,success,22
+PPG,24.33,7.32,9.32,7.69,01/08/2022,success,Mr. Timothy M. Knavish,male,success,22
+PPL,33.84,5.81,19.71,8.31,01/08/2022,success,Mr. Vincent  Sorgi,male,success,22
+PFG,17.22,9.88,0.68,6.65,01/01/2023,success,Mr. Daniel Joseph Houston,male,success,23
+PG,26.61,7.47,9.54,9.6,01/08/2022,success,Mr. Jon R. Moeller,male,success,22
+PGR,20.87,10.85,1.67,8.36,01/01/2023,success,Ms. Susan Patricia Griffith,female,success,23
+PLD,8.51,4.27,2.5,1.74,01/08/2022,success,Mr. Hamid R. Moghadam,male,success,22
+PRU,16.21,8.6,1.03,6.57,01/08/2022,success,Mr. Charles Frederick Lowrey Jr.,male,success,22
+PEG,26.31,5.46,11.56,9.28,01/01/2023,success,Mr. Ralph A. LaRossa,male,success,23
+PTC,18.93,5.4,4.92,8.61,01/01/2023,success,Mr. James E. Heppelmann,male,success,23
+PSA,12.3,5.24,4.51,2.55,01/08/2022,success,Mr. Joseph D. Russell Jr.,male,success,22
+PHM,20.87,4.86,8.73,7.28,01/01/2023,success,Mr. Ryan R. Marshall,male,success,23
+QRVO,29.08,7.46,13.12,8.5,01/01/2023,success,Mr. Robert A. Bruggeworth,male,success,23
+PWR,37.18,9.05,12.4,15.73,01/01/2023,success,Mr. Earl C. Austin Jr.,male,success,23
+QCOM,16.59,7.71,4.83,4.05,01/08/2022,success,Mr. Cristiano Renno Amon,male,success,22
+DGX,20.98,8.18,0.13,12.67,01/01/2023,success,Mr. James E. Davis,male,success,23
+RL,13.21,5.28,1.14,6.79,01/01/2023,success,Mr. Patrice Jean Louis Louvet,male,success,23
+RJF,23.99,12.43,1.18,10.38,01/01/2023,success,Mr. Paul Christopher Reilly,male,success,23
+O,15.47,5.74,4.41,5.32,01/01/2023,success,Mr. Sumit  Roy,male,success,23
+REG,10.88,4.45,3.56,2.86,01/01/2023,success,Ms. Lisa  Palmer,female,success,23
+REGN,18.15,7.03,0.38,10.75,01/08/2022,success,"Dr. Leonard S. Schleifer M.D., Ph.D.",male,Manually added gender,22
+RF,16.08,7.44,1.6,7.03,01/01/2023,success,Mr. John M. Turner Jr.,male,success,23
+RSG,20.98,3.66,11.3,6.02,01/01/2023,success,Mr. Jon  Vander Ark,male,success,23
+RMD,26.41,10.63,3.36,12.41,01/01/2023,success,"Mr. Michael J. Farrell BE, MBA, SM",male,success,23
+RHI,10.93,3.46,0.1,7.37,01/01/2023,success,Mr. M. Keith Waddell,male,success,23
+ROK,17.67,5.65,5.37,6.64,01/01/2023,success,Mr. Blake D. Moret,male,success,23
+ROL,20.28,7.34,1.76,11.18,01/01/2023,success,Mr. Jerry E. Gahlhoff Jr.,male,success,23
+ROP,22.9,5.56,4.62,12.71,01/01/2023,success,Mr. Laurence Neil Hunn,male,success,23
+ROST,15.93,5.68,1.8,8.45,01/08/2022,success,Ms. Barbara  Rentler,female,success,22
+RCL,20.97,3.79,9.14,8.04,01/01/2023,success,Mr. Jason T. Liberty,male,success,23
+SPGI,14.31,8.15,0.0,6.16,01/08/2022,success,Mr. Douglas L. Peterson M.B.A.,male,success,22
+CRM,13.18,4.46,2.34,6.39,01/08/2022,success,Mr. Marc R. Benioff,male,success,22
+SBAC,11.58,5.23,3.11,3.23,01/01/2023,success,Mr. Jeffrey A. Stoops,male,success,23
+SLB,21.93,5.76,7.41,8.76,01/08/2022,success,Mr. Olivier  Le Peuch,male,success,22
+SEE,20.57,3.23,15.83,1.52,01/01/2023,success,Mr. Emile Z. Chammas,male,success,23
+SRE,24.72,5.5,12.09,7.14,01/08/2022,success,Mr. Jeffrey Walker Martin,male,success,22
+NOW,16.05,6.26,1.41,8.39,01/01/2023,success,Mr. William R. McDermott,male,success,23
+SHW,28.63,6.72,12.93,8.99,01/08/2022,success,Mr. John G. Morikis,male,success,22
+SPG,14.21,6.38,3.83,3.99,01/08/2022,success,Mr. David E. Simon,male,success,22
+SWKS,27.76,7.21,11.63,8.93,01/01/2023,success,Mr. Liam K. Griffin,male,success,23
+SJM,30.97,6.16,12.36,12.44,01/01/2023,success,Mr. Mark T. Smucker,male,success,23
+SNA,30.83,7.59,9.33,13.91,01/01/2023,success,Mr. Nicholas T. Pinchuk,male,success,23
+SO,33.09,7.3,14.79,11.0,01/08/2022,success,Mr. Christopher C. Womack,male,success,22
+LUV,32.39,6.21,11.29,14.89,01/08/2022,success,Mr. Robert E. Jordan,male,success,22
+SWK,25.93,7.59,5.83,12.51,01/01/2023,success,Mr. Donald  Allan Jr.,male,success,23
+SBUX,24.83,4.21,6.11,14.5,01/08/2022,success,Mr. Laxman  Narasimhan,male,success,22
+STT,22.27,9.11,1.96,11.2,01/08/2022,success,Mr. Ronald Philip O'Hanley,male,success,22
+STLD,32.39,8.21,9.82,14.36,01/01/2023,success,Mr. Mark D. Millett,male,success,23
+SYK,28.52,10.84,3.72,13.96,01/08/2022,success,Mr. Kevin A. Lobo,male,success,22
+SYF,17.22,7.19,0.13,9.89,01/08/2022,success,Mr. Brian D. Doubles,male,success,22
+SNPS,13.45,4.07,3.18,6.2,01/01/2023,success,Dr. Aart J. de Geus,male,Manually added gender,23
+SYY,12.06,4.57,2.79,4.7,01/08/2022,success,Mr. Kevin P. Hourican,male,success,22
+TMUS,26.07,7.69,5.03,13.35,01/08/2022,success,Mr. G. Michael Sievert,male,success,22
+TROW,17.05,5.39,2.36,9.3,01/01/2023,success,"Mr. Robert W. Sharps C.F.A., CPA",male,success,23
+TPR,13.33,4.91,1.23,7.2,01/01/2023,success,Ms. Joanne C. Crevoiserat,female,success,23
+TRGP,33.98,4.13,15.33,14.52,01/01/2023,success,Mr. Matthew J. Meloy,male,success,23
+TGT,14.72,5.06,2.04,7.63,01/08/2022,success,Mr. Brian C. Cornell,male,success,22
+TEL,15.93,4.64,6.42,4.87,01/08/2022,success,Mr. Terrence R. Curtin CPA,male,success,22
+TFX,29.63,8.67,4.83,16.12,01/01/2023,success,Mr. Liam J. Kelly,male,success,23
+TER,15.86,4.64,6.27,4.95,01/01/2023,success,Mr. Gregory S. Smith,male,success,23
+TSLA,28.54,9.61,2.78,16.16,01/08/2022,success,Mr. Elon R. Musk,male,success,22
+TXN,19.93,6.03,8.84,5.06,01/08/2022,success,Mr. Haviv  Ilan,male,success,22
+TXT,33.81,6.53,11.05,16.23,01/01/2023,success,Mr. Scott C. Donnelly,male,success,23
+TMO,13.52,6.46,1.47,5.6,01/08/2022,success,Mr. Marc N. Casper,male,success,22
+TJX,14.43,5.12,1.89,7.42,01/08/2022,success,Mr. Ernie L. Herrman,male,success,22
+TSCO,13.96,4.14,3.04,6.78,01/01/2023,success,Mr. Harry A. Lawton III,male,success,23
+TT,16.12,5.16,7.11,3.84,01/01/2023,success,Mr. David S. Regnery,male,success,23
+TDG,39.09,8.4,12.84,17.85,01/01/2023,success,Dr. Kevin M. Stein Ph.D.,male,Manually added gender,23
+TRV,20.52,10.08,0.99,9.45,01/08/2022,success,Mr. Alan David Schnitzer,male,success,22
+TRMB,12.98,6.09,3.17,3.72,01/01/2023,success,Mr. Robert G. Painter,male,success,23
+TSN,36.67,9.97,14.31,12.39,01/01/2023,success,Mr. Donnie D. King,male,success,23
+UDR,12.36,5.21,3.15,4.0,01/01/2023,success,Mr. Thomas W. Toomey,male,success,23
+ULTA,15.33,4.29,3.83,7.2,01/01/2023,success,Mr. David C. Kimbell,male,success,23
+UNP,25.26,3.69,9.43,12.14,01/08/2022,success,Mr. Vincenzo James Vena,male,success,22
+UAL,28.81,4.96,10.9,12.95,01/01/2023,success,Mr. J. Scott Kirby,male,success,23
+UPS,19.5,5.38,4.58,9.55,01/08/2022,success,Ms. Carol B. Tome,female,success,22
+URI,18.45,5.99,5.89,6.57,01/01/2023,success,Mr. Matthew J. Flannery,male,success,23
+UNH,17.54,5.89,0.03,11.62,01/08/2022,success,Sir Andrew Philip Witty,male,Manually added gender,22
+UHS,32.98,8.6,3.7,20.68,01/01/2023,success,Mr. Marc D. Miller,male,success,23
+VLO,30.05,4.65,18.18,7.23,01/08/2022,success,Mr. R. Lane Riggs,male,success,22
+VTR,12.75,5.73,2.75,4.28,01/01/2023,success,Ms. Debra A. Cafaro,female,success,23
+VRSN,21.44,5.93,4.74,10.77,01/01/2023,success,Mr. D. James Bidzos,male,success,23
+VRSK,19.3,5.7,0.11,13.5,01/01/2023,success,Mr. Lee M. Shavel,male,success,23
+VZ,18.48,5.69,3.88,8.92,01/08/2022,success,Mr. Hans E. Vestberg,male,success,22
+VRTX,22.82,6.67,0.75,15.4,01/01/2023,success,"Dr. Reshma  Kewalramani FASN, M.D.",female,Manually added gender,23
+VFC,12.89,5.07,0.9,6.91,01/01/2023,success,Mr. Bracken P. Darrell,male,success,23
+V,16.07,7.52,0.71,7.84,01/08/2022,success,Mr. Ryan M. McInerney,male,success,22
+VMC,29.02,8.85,15.61,4.56,01/01/2023,success,Mr. James Thomas Hill,male,success,23
+WAB,23.25,7.04,4.52,11.69,01/01/2023,success,Mr. Rafael O. Santana,male,success,23
+WBA,18.29,4.73,2.03,11.52,01/08/2022,success,Mr. Timothy C. Wentworth,male,success,22
+WMT,24.63,6.31,4.4,13.92,01/08/2022,success,Mr. C. Douglas McMillon,male,success,22
+WM,16.73,3.28,8.22,5.24,01/08/2022,success,Mr. James C. Fish Jr.,male,success,22
+WAT,17.01,6.24,1.37,9.4,01/01/2023,success,Dr. Udit  Batra Ph.D.,male,Manually added gender,23
+WEC,27.36,5.27,14.68,7.4,01/01/2023,success,Mr. Scott J. Lauber,male,success,23
+WFC,32.84,15.51,1.94,15.4,01/08/2022,success,Mr. Charles W. Scharf,male,success,22
+WELL,12.01,4.92,3.87,3.22,01/01/2023,success,Mr. Shankh S. Mitra,male,success,23
+WDC,11.43,6.05,1.48,3.91,01/01/2023,success,Mr. David V. Goeckeler,male,success,23
+WY,17.56,3.78,10.48,3.29,01/08/2022,success,"Mr. Devin W. Stockfish Esq., J.D.",male,success,22
+WHR,15.8,3.96,4.76,7.08,01/01/2023,success,Mr. Marc Robert Bitzer,male,success,23
+WMB,23.5,3.08,9.98,10.43,01/01/2023,success,Mr. Alan S. Armstrong,male,success,23
+WTW,18.61,9.79,0.13,8.68,01/01/2023,success,"Mr. Carl A. Hess CERA, F.S.A.",male,success,23
+GWW,14.6,5.72,3.41,5.48,01/01/2023,success,Mr. Donald G. Macpherson,male,success,23
+WYNN,26.49,10.96,3.55,11.98,01/01/2023,success,Mr. Craig Scott Billings,male,success,23
+XEL,23.8,4.18,12.87,6.75,01/01/2023,success,Mr. Robert C. Frenzel,male,success,23
+XYL,16.04,5.08,3.56,7.4,01/01/2023,success,Mr. Patrick K. Decker,male,success,23
+YUM,20.55,4.44,4.46,11.65,01/08/2022,success,Mr. David W. Gibbs,male,success,22
+ZBH,27.3,8.24,4.46,14.6,01/01/2023,success,Mr. Ivan  Tornos,male,success,23
+ZTS,18.47,8.95,1.38,8.15,01/08/2022,success,Ms. Kristin C. Peck,female,success,22
