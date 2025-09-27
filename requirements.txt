@@ -5,6 +5,7 @@ scikit-learn
 xgboost
 lightgbm
 catboost
+yfinance
 
 # Visualization
 matplotlib
