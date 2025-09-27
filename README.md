@@ -62,6 +62,56 @@ The file **`dataset_final.csv`** contains the following columns:
 | Ticker | Company Name                           |
 |--------|----------------------------------------|
 ---
+A 	Agilent Technologies Inc.
+AAL 	American Airlines Group Inc.
+AAPL 	Apple Inc.
+ABBV 	AbbVie Inc.
+ABT 	Abbott Laboratories
+ACGL 	Arch Capital Group Ltd.
+ACN 	Accenture plc
+ADBE 	Adobe Inc.
+ADI 	Analog Devices, Inc.
+ADM 	Archer-Daniels-Midland Company
+ADP 	Automatic Data Processing, Inc.
+ADSK 	Autodesk, Inc.
+AEE 	Ameren Corporation
+AEP 	American Electric Power Company, Inc.
+AES 	AES Corporation
+AFL 	Aflac Incorporated
+AIG 	American International Group, Inc.
+AIZ 	Assurant, Inc.
+AJG 	Arthur J. Gallagher & Co.
+AKAM 	Akamai Technologies, Inc.
+ALB 	Albemarle Corporation
+ALL 	The Allstate Corporation
+ALLE 	Allegion plc
+AMAT 	Applied Materials, Inc.
+AME 	A. O. Smith Corporation
+AMGN 	Amgen Inc.
+AMP 	Ameriprise Financial, Inc.
+AMT 	American Tower Corporation
+AMZN 	Amazon.com, Inc.
+ANET 	Arista Networks, Inc.
+ANSS 	ANSYS, Inc.
+AOS 	A. O. Smith Corporation
+APD 	Air Products and Chemicals, Inc.
+APH 	Amphenol Corporation
+APTV 	Aptiv PLC
+ARE 	Alexandria Real Estate Equities, Inc.
+ATO 	Atmos Energy Corporation
+AVB 	AvalonBay Communities, Inc.
+AVY 	Avery Dennison Corporation
+AWK 	American Water Works Company, Inc.
+AXP 	American Express Company
+AZO 	AutoZone, Inc.
+BAC 	Bank of America Corporation
+BALL 	Ball Corporation
+BBWI 	Bath & Body Works, Inc.
+GOOGL 	Alphabet Inc. (Class A)
+LNT 	Alliant Energy Corporation
+MMM 	3M Company
+MO 	Altria Group, Inc.
+T 	AT&T Inc.
 
 ## ⚙️ How to Run
 
