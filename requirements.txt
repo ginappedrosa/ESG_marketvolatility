@@ -1,0 +1,18 @@
+# Core data & ML
+pandas
+numpy
+scikit-learn
+xgboost
+lightgbm
+catboost
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# App deployment
+streamlit
+
+# Extra utilities
+joblib
