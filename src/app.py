@@ -23,6 +23,10 @@ st.set_page_config(
     layout="wide"
 )
 
+# For Render deployment
+import os
+port = int(os.environ.get("PORT", 8501))
+
 # ========================
 # STYLING
 # ========================
