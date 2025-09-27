@@ -11,3 +11,153 @@ X.shape: (501, 17)
 X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
 TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
 model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+==== predict_with_dataset ====
+X.shape: (501, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+MAPEO TRAINING_FEATURES -> model.feature_name_:
+0: Open -> Column_0
+1: High -> Column_1
+2: Low -> Column_2
+3: Close -> Column_3
+4: Adj Close -> Column_4
+5: Volume -> Column_5
+6: ESG Score -> Column_6
+7: Governance Score -> Column_7
+8: Environment Score -> Column_8
+9: Social Score -> Column_9
+10: Year -> Column_10
+11: Daily_Return -> Column_11
+12: Ticker_n -> Column_12
+13: ESG Score Date_n -> Column_13
+14: ESG Status_n -> Column_14
+15: CEO Gender_n -> Column_15
+16: DUMMY_FILL -> Column_16
+
+==== predict_with_dataset ====
+X.shape: (501, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+MAPEO TRAINING_FEATURES -> model.feature_name_:
+0: Open -> Column_0
+1: High -> Column_1
+2: Low -> Column_2
+3: Close -> Column_3
+4: Adj Close -> Column_4
+5: Volume -> Column_5
+6: ESG Score -> Column_6
+7: Governance Score -> Column_7
+8: Environment Score -> Column_8
+9: Social Score -> Column_9
+10: Year -> Column_10
+11: Daily_Return -> Column_11
+12: Ticker_n -> Column_12
+13: ESG Score Date_n -> Column_13
+14: ESG Status_n -> Column_14
+15: CEO Gender_n -> Column_15
+16: DUMMY_FILL -> Column_16
+
+==== predict_with_dataset ====
+X.shape: (501, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+MAPEO TRAINING_FEATURES -> model.feature_name_:
+0: Open -> Column_0
+1: High -> Column_1
+2: Low -> Column_2
+3: Close -> Column_3
+4: Adj Close -> Column_4
+5: Volume -> Column_5
+6: ESG Score -> Column_6
+7: Governance Score -> Column_7
+8: Environment Score -> Column_8
+9: Social Score -> Column_9
+10: Year -> Column_10
+11: Daily_Return -> Column_11
+12: Ticker_n -> Column_12
+13: ESG Score Date_n -> Column_13
+14: ESG Status_n -> Column_14
+15: CEO Gender_n -> Column_15
+16: DUMMY_FILL -> Column_16
+
+==== predict_with_dataset ====
+X.shape: (501, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+MAPEO TRAINING_FEATURES -> model.feature_name_:
+0: Open -> Column_0
+1: High -> Column_1
+2: Low -> Column_2
+3: Close -> Column_3
+4: Adj Close -> Column_4
+5: Volume -> Column_5
+6: ESG Score -> Column_6
+7: Governance Score -> Column_7
+8: Environment Score -> Column_8
+9: Social Score -> Column_9
+10: Year -> Column_10
+11: Daily_Return -> Column_11
+12: Ticker_n -> Column_12
+13: ESG Score Date_n -> Column_13
+14: ESG Status_n -> Column_14
+15: CEO Gender_n -> Column_15
+16: DUMMY_FILL -> Column_16
+
+==== predict_with_dataset ====
+X.shape: (501, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+MAPEO TRAINING_FEATURES -> model.feature_name_:
+0: Open -> Column_0
+1: High -> Column_1
+2: Low -> Column_2
+3: Close -> Column_3
+4: Adj Close -> Column_4
+5: Volume -> Column_5
+6: ESG Score -> Column_6
+7: Governance Score -> Column_7
+8: Environment Score -> Column_8
+9: Social Score -> Column_9
+10: Year -> Column_10
+11: Daily_Return -> Column_11
+12: Ticker_n -> Column_12
+13: ESG Score Date_n -> Column_13
+14: ESG Status_n -> Column_14
+15: CEO Gender_n -> Column_15
+16: DUMMY_FILL -> Column_16
+
+==== predict_with_dataset ====
+X.shape: (501, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+MAPEO TRAINING_FEATURES -> model.feature_name_:
+0: Open -> Column_0
+1: High -> Column_1
+2: Low -> Column_2
+3: Close -> Column_3
+4: Adj Close -> Column_4
+5: Volume -> Column_5
+6: ESG Score -> Column_6
+7: Governance Score -> Column_7
+8: Environment Score -> Column_8
+9: Social Score -> Column_9
+10: Year -> Column_10
+11: Daily_Return -> Column_11
+12: Ticker_n -> Column_12
+13: ESG Score Date_n -> Column_13
+14: ESG Status_n -> Column_14
+15: CEO Gender_n -> Column_15
+16: DUMMY_FILL -> Column_16
