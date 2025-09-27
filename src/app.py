@@ -246,5 +246,5 @@ with tab5:
     col2.metric("MSE", f"{metrics.get('MSE_test',0):.3f}")
     col3.metric("MAE", f"{metrics.get('MAE_test',0):.3f}")
     if "feature_importance" in metrics:
-        fig_imp = px.bar(x=metrics["feature_importance"]["features"], y=metrics["feature_importance"]["importance"], title="Feature Importance", color=metrics["feature_importance"]["importance"], color_continuous_scale="Viridis")
+        fig_imp = px.bar(x=metrics["festreature_importance"]["features"], y=metrics["feature_importance"]["importance"], title="Feature Importance", color=metrics["feature_importance"]["importance"], color_continuous_scale="Viridis")
         st.plotly_chart(fig_imp, use_container_width=True)
