@@ -1,0 +1,61 @@
+* [33m78d70d4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mE_Pablos_28.09[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31morigin/E_Pablos_28.09[m[33m, [m[1;32mmain[m[33m)[m Port modifiec
+* [33m35504ca[m Streamlit updated with correct paths and detailed tab explanations
+* [33m65d9e35[m Changes for successful Render deployment
+* [33mb57d41d[m Last changes Streamlit
+* [33m159b9f8[m Streamlit corrections and re-deployment
+* [33mf2315ea[m Requirements installed
+* [33ma5f9583[m Requirements.txt
+* [33m3ac0505[m README.md
+* [33m72b873d[m README.md
+* [33m52784a0[m README.md
+*   [33m4b40b19[m Merge pull request #5 from EPablos2013/main
+[32m|[m[33m\[m  
+[32m|[m * [33mb96a6ef[m Index, model saving
+[32m|[m[32m/[m  
+* [33ma143b30[m Streamlit deployment
+* [33m1d5c57c[m Changes for Streamlit and Render deployment
+* [33m9cc3dc4[m Code comments + explanation
+* [33m92cf464[m Enhance Streamlit code
+*   [33m9e664ad[m Merge pull request #4 from lieliarodas/main
+[34m|[m[35m\[m  
+[34m|[m * [33m393452e[m Update titles and optimize code
+[34m|[m[34m/[m  
+*   [33m225d780[m Merge pull request #3 from EPablos2013/Erika_Pablos_New
+[36m|[m[1;31m\[m  
+[36m|[m * [33m573aa1d[m Graphs conclusions
+[36m|[m * [33m374d4c9[m Notebook backup
+* [1;31m|[m [33m467cf4a[m Merge pull request #2 from EPablos2013/main
+[1;32m|[m[1;31m\[m[1;31m|[m 
+[1;32m|[m * [33m7d633a9[m Titles added, conclusions for graphs and code cleanup
+[1;32m|[m * [33m69c285e[m Models comparison and Streamlit first draft
+[1;32m|[m[1;32m/[m  
+* [33maefa809[m Actualización de datasets X_train/X_test y modelos XGBoost, limpieza y normalización
+* [33m7c69438[m Limpieza: eliminadas carpetas duplicadas y actualizaciones en project_explore.ipynb
+* [33mfa80952[m Recupera dataset_final.csv
+* [33me1a3238[m Actualizar repositorio con todos los cambios recientes excepto timeseries
+* [33m204a402[m Ignorar archivo de series temporales grande
+* [33m2180d4c[m Actualizar repo con archivos recientes excepto modelo timeseries
+* [33mbd5f6bf[m Ignorar archivo timeseries grande
+* [33m5c2d944[m Ignorar archivo timeseries grande
+*   [33mdab54e2[m Changes on branch
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [33m4d40b5f[m Changes in the naming of variables
+[1;34m|[m * [33mcb7dd78[m Adjustments in variables
+[1;34m|[m * [33m8297c2d[m XBoost
+[1;34m|[m * [33mb74156e[m Starting XGBoost Regressor model
+[1;34m|[m * [33m297fdfd[m Parameter change in Random Forest
+[1;34m|[m * [33m30bff69[m Grid Search for Random Forest improvement
+[1;34m|[m * [33m0b11430[m Random Forest ongoing
+[1;34m|[m * [33m547bf99[m Linear Regression
+[1;34m|[m * [33ma1442fb[m SAVE DF AND NORM/SCAL
+[1;34m|[m * [33m35c8e11[m Norm/Scal
+[1;34m|[m * [33md25866d[m Train/test split
+[1;34m|[m * [33m5501287[m Initial EDA notebook with basic plots and correlations
+[1;34m|[m * [33m0cdd2c1[m Inicio EDA
+[1;34m|[m * [33me48c8da[m Save
+[1;34m|[m * [33md5fcb34[m Explore
+[1;34m|[m * [33mdeffb40[m DS
+[1;34m|[m * [33mba32fde[m Cambios
+[1;34m|[m * [33m1236cc5[m New
+[1;34m|[m * [33mfef064b[m Initial commit
+* [33mc93c052[m Dataset changes and model changes
