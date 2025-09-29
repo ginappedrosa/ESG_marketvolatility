@@ -450,3 +450,27 @@ X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 
 ==== predict_with_current_prices ====
 X.shape: (250, 17)
 X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+
+==== predict_with_hybrid ====
+X.shape: (250, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+
+==== predict_with_hybrid ====
+X.shape: (250, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+
+==== predict_with_hybrid ====
+X.shape: (250, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+
+==== predict_with_hybrid ====
+X.shape: (250, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+
+==== predict_with_hybrid ====
+X.shape: (250, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
+
+==== predict_with_hybrid ====
+X.shape: (250, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']

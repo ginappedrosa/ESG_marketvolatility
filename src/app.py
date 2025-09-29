@@ -126,21 +126,27 @@ def predict_with_dataset(ticker: str):
     y_pred = model.predict(X)
     return ticker_data, y_pred
 
-def predict_with_current_prices(ticker: str):
+def predict_with_hybrid(ticker: str):
     yf_data = yf.download(ticker, period="1y", progress=False)
     if yf_data.empty:
         return None, None
-    # Ensure columns exist
+    # Asegura 'Adj Close'
     if 'Adj Close' not in yf_data.columns:
-        # st.warning(f("'Adj Close' not found for {ticker}, using 'Close' instead."))
         yf_data['Adj Close'] = yf_data['Close']
     yf_data["Return"] = yf_data["Adj Close"].pct_change()
     yf_data["Daily_Volatility"] = yf_data["Return"].rolling(window=30).std() * np.sqrt(252)
+    # Si el ticker está en el dataset, usa features ESG/categóricas
+    esg_row = data[data["Ticker"] == ticker].iloc[-1] if ticker in data["Ticker"].unique() else None
     X_new = pd.DataFrame(index=yf_data.index)
     for col in TRAINING_FEATURES:
-        X_new[col] = yf_data[col].fillna(0) if col in yf_data.columns else -1
+        if col in yf_data.columns:
+            X_new[col] = yf_data[col].fillna(0)
+        elif esg_row is not None and col in esg_row.index:
+            X_new[col] = esg_row[col]
+        else:
+            X_new[col] = -1
     X_new = X_new[TRAINING_FEATURES]
-    print_debug(X_new, "predict_with_current_prices")
+    print_debug(X_new, "predict_with_hybrid")
     y_pred = model.predict(X_new.tail(1))
     return yf_data, y_pred
 
@@ -169,14 +175,11 @@ selected_tickers = st.sidebar.multiselect("Select Tickers:",
 st.sidebar.header("Ticker Input")
 ticker_input = st.sidebar.text_input("Enter any US ticker symbol:", "AAPL").upper()
 
-# Always get latest prices, even for dataset tickers
-df_ticker, preds = predict_with_current_prices(ticker_input)
+df_ticker, preds = predict_with_hybrid(ticker_input)
 if df_ticker is None or df_ticker.empty:
     st.sidebar.error(f"Ticker {ticker_input} not found or cannot fetch data.")
     df_ticker = pd.DataFrame()
     preds = []
-
-ticker_source = "yfinance"  # Always showing current data
 
 # ========================
 # TABS
@@ -248,7 +251,7 @@ with tab4:
     if selected_tickers:
         port_data = pd.DataFrame()
         for t in selected_tickers:
-            df_t, _ = predict_with_current_prices(t)
+            df_t, _ = predict_with_hybrid(t)
             if df_t is not None:
                 df_t["Ticker"] = t
                 port_data = pd.concat([port_data, df_t])
