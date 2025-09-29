@@ -9,25 +9,31 @@ import numpy as np
 import os
 
 # ========================
-# MAIN PAGE INFO
+# PAGE TITLE & DESCRIPTION
 # ========================
+st.set_page_config(
+    page_title="ESG & Market Volatility Dashboard",
+    page_icon=":bar_chart:",
+    layout="wide"
+)
+
 st.title("📊 ESG & Market Volatility Dashboard")
 st.markdown("""
 Welcome to the **ESG & Market Volatility Dashboard** 🌍📈  
 
-This tool uses a **machine learning model trained on S&P500 companies** to predict stock volatility.  
+This dashboard is a **test environment** designed to showcase the potential of predicting stock volatility using a **machine learning model trained on S&P500 companies with ESG data from 2022-2023**.  
 
-🔹 **Options available now:**  
-- Select **tickers from our ESG dataset** (includes ESG scores + market data).  
-- Or enter **any other US ticker** (via Yahoo Finance) to estimate volatility.  
+🔹 **How it works:**  
+- For tickers in our ESG dataset, the model uses ESG scores from 2022-2023 combined with market data to predict the latest daily volatility.  
+- For any other US ticker, the model calculates **historical daily volatility** using Yahoo Finance prices (full history) and provides a prediction for the latest day.  
 
-⚠️ **Note:** Predictions are reliable only for US tickers, since the model was trained with S&P500 data.  
+⚠️ **Note:** This is a test. Predictions are indicative and not financial advice.  
 
-🚧 **Next steps (coming soon):**  
-- Expand coverage to **IBEX35 (Spain)**, **Eurostoxx50 (Europe)**, and other international indices.  
-- Enrich predictions with additional macro & ESG data.  
-
-Use the tabs below to explore companies, compare ESG vs volatility, run predictions, or simulate portfolios.
+🚀 **What you can do here:**  
+- Explore company ESG vs market volatility.  
+- Predict daily volatility for any US ticker.  
+- Simulate a portfolio to assess combined ESG-risk trade-offs.  
+- Analyze model performance and feature importance.
 
 **Created by:** Gina Pedrosa, Erika Pablos, and Lielia Rodas
 """)
@@ -40,14 +46,6 @@ METRICS_PATH = "src/data/lgbm_mix_model_metrics.json"
 DATASET_PATH = "src/data/dataset_final.csv"
 CATEGORICAL_RULES_PATH = "src/data/categorical_rules.json"
 
-# ========================
-# STREAMLIT CONFIG
-# ========================
-st.set_page_config(
-    page_title="ESG & Market Volatility Dashboard",
-    page_icon=":bar_chart:",
-    layout="wide"
-)
 port = int(os.environ.get("PORT", 8501))
 
 # ========================
@@ -119,9 +117,6 @@ def print_debug(X, context):
         f.write(f"\n==== {context} ====\n")
         f.write(f"X.shape: {X.shape}\n")
         f.write(f"X.columns: {list(X.columns)}\n")
-        f.write(f"TRAINING_FEATURES ({len(TRAINING_FEATURES)}): {TRAINING_FEATURES}\n")
-        model_features = getattr(model, 'feature_name_', None)
-        f.write(f"model.feature_name_: {model_features}\n")
 
 # ========================
 # PREDICTION FUNCTIONS
@@ -137,7 +132,7 @@ def predict_with_dataset(ticker: str):
     return ticker_data, y_pred
 
 def predict_with_yfinance(ticker: str):
-    yf_data = yf.download(ticker, period="1y", progress=False)
+    yf_data = yf.download(ticker, period="max", progress=False)  # Full history
     if yf_data.empty:
         return None, None
     yf_data["Return"] = yf_data["Adj Close"].pct_change()
@@ -198,26 +193,32 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     ":cog: Model Performance"
 ])
 
+# ------------------------
 # TAB 1 - Company Overview
+# ------------------------
 with tab1:
     st.header(f"Company Overview - {ticker_input} ({ticker_source})")
     st.markdown("""
-    **Description:** See key metrics of the selected company.  
-    **Contains:** Average ESG Score, Daily Volatility, Adjusted Close price.  
-    **Usage:** Quickly check ESG performance and market stability. Hover over rows to explore values.
+    **Description:** Shows key metrics of the selected company.  
+    **Includes:** ESG Score history 2022-2023, daily volatility calculated using full historical YFinance prices, and adjusted close price.  
+    **Usage:** Quickly check ESG performance and market stability. Hover over rows to explore details.
     """)
     if not df_ticker.empty:
-        kpi_data = df_ticker[["ESG Score", "Daily_Volatility", "Adj Close"]].mean().to_frame().T
-        st.dataframe(kpi_data.style.background_gradient(cmap="Greens", subset=["ESG Score"])
-                                     .highlight_max(subset=["Adj Close"], color="lightblue"))
+        kpi_data = df_ticker[["ESG Score","Daily_Volatility","Adj Close"]].mean().to_frame().T
+        st.dataframe(
+            kpi_data.style.background_gradient(cmap="Greens", subset=["ESG Score"])
+                     .highlight_max(subset=["Adj Close"], color="lightblue")
+        )
 
+# ------------------------
 # TAB 2 - ESG vs Volatility
+# ------------------------
 with tab2:
     st.header(f"ESG Score vs Daily Volatility - {ticker_input} ({ticker_source})")
     st.markdown("""
     **Description:** Scatter plot of ESG Score vs Daily Volatility.  
-    **Contains:** Each point represents a company, sized by stock price.  
-    **Usage:** Identify if higher ESG scores are associated with lower volatility.
+    **Includes:** Each point represents a company (if in dataset), sized by stock price.  
+    **Usage:** Check if higher ESG scores are associated with lower volatility.
     """)
     if ticker_source == "dataset" and not df_ticker.empty:
         fig2 = px.scatter(
@@ -229,45 +230,56 @@ with tab2:
     else:
         st.info("ESG data not available for this ticker.")
 
+# ------------------------
 # TAB 3 - Prediction
+# ------------------------
 with tab3:
     st.header(f"Predict Volatility - {ticker_input} ({ticker_source})")
     st.markdown("""
-    **Description:** Forecast short-term daily volatility for a company.  
-    **Usage:** Enter a ticker, view historical or estimated volatility. Predicted volatility is shown for the latest date.
+    **Description:** Forecast short-term daily volatility using ML model.  
+    **Data:** ESG 2022-2023 + full historical prices from Yahoo Finance.  
+    **Usage:** Visualize historical volatility and prediction for the latest day.
     """)
     if not df_ticker.empty:
         fig_pred = go.Figure()
         x_vals = df_ticker.index if ticker_source=="yfinance" else df_ticker["Date"]
-        fig_pred.add_trace(go.Scatter(x=x_vals, y=df_ticker["Daily_Volatility"], mode="lines",
-                                      name="Volatility", line=dict(color="#1F77B4", width=3)))
+        fig_pred.add_trace(go.Scatter(
+            x=x_vals, y=df_ticker["Daily_Volatility"], mode="lines",
+            name="Volatility", line=dict(color="#1F77B4", width=3)
+        ))
         st.plotly_chart(fig_pred, use_container_width=True)
         if len(preds)>0:
-            st.metric("Predicted Volatility (latest)", f"{preds[-1]:.4f}")
+            st.metric("Predicted Volatility (latest day)", f"{preds[-1]:.4f}")
 
+# ------------------------
 # TAB 4 - Portfolio Simulation
+# ------------------------
 with tab4:
     st.header("Portfolio Simulation")
     st.markdown("""
     **Description:** Analyze selected tickers as a portfolio.  
-    **Contains:** Evolution of daily volatility, average volatility per ticker.  
+    **Includes:** Evolution of daily volatility, average volatility per ticker.  
     **Usage:** Select tickers in sidebar. Assess combined portfolio risk and ESG trade-offs.
     """)
     if selected_tickers:
         port_data = data[data["Ticker"].isin(selected_tickers)]
-        fig_port = px.line(port_data, x="Date", y="Daily_Volatility", color="Ticker",
-                           title="Portfolio Volatility Evolution",
-                           color_discrete_sequence=px.colors.qualitative.Set2)
+        fig_port = px.line(
+            port_data, x="Date", y="Daily_Volatility", color="Ticker",
+            title="Portfolio Volatility Evolution",
+            color_discrete_sequence=px.colors.qualitative.Set2
+        )
         st.plotly_chart(fig_port, use_container_width=True)
         avg_vol = port_data.groupby("Ticker")["Daily_Volatility"].mean()
         st.bar_chart(avg_vol)
 
+# ------------------------
 # TAB 5 - Model Performance
+# ------------------------
 with tab5:
     st.header("Model Performance")
     st.markdown("""
     **Description:** View predictive model metrics and feature importance.  
-    **Contains:** R², MSE, MAE, and importance of features.  
+    **Includes:** R², MSE, MAE, and importance of features.  
     **Usage:** Understand model quality and main drivers of volatility predictions.
     """)
     col1, col2, col3 = st.columns(3)

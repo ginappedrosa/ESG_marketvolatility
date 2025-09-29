@@ -317,3 +317,7 @@ X.shape: (501, 17)
 X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
 TRAINING_FEATURES (17): ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
 model.feature_name_: ['Column_0', 'Column_1', 'Column_2', 'Column_3', 'Column_4', 'Column_5', 'Column_6', 'Column_7', 'Column_8', 'Column_9', 'Column_10', 'Column_11', 'Column_12', 'Column_13', 'Column_14', 'Column_15', 'Column_16']
+
+==== predict_with_dataset ====
+X.shape: (501, 17)
+X.columns: ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n', 'DUMMY_FILL']
