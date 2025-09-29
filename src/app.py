@@ -9,31 +9,18 @@ import numpy as np
 import os
 
 # ========================
-# PAGE TITLE & DESCRIPTION
+# MAIN PAGE INFO
 # ========================
-st.set_page_config(
-    page_title="ESG & Market Volatility Dashboard",
-    page_icon=":bar_chart:",
-    layout="wide"
-)
-
 st.title("📊 ESG & Market Volatility Dashboard")
 st.markdown("""
-Welcome to the **ESG & Market Volatility Dashboard** 🌍📈  
+Welcome to the **ESG & Market Volatility Dashboard** 🌍📈
 
-This dashboard is a **test environment** designed to showcase the potential of predicting stock volatility using a **machine learning model trained on S&P500 companies with ESG data from 2022-2023**.  
+This dashboard allows you to explore **US stocks** with ESG scores and predict **daily volatility** using a machine learning model trained on S&P500 companies.
 
-🔹 **How it works:**  
-- For tickers in our ESG dataset, the model uses ESG scores from 2022-2023 combined with market data to predict the latest daily volatility.  
-- For any other US ticker, the model calculates **historical daily volatility** using Yahoo Finance prices (full history) and provides a prediction for the latest day.  
-
-⚠️ **Note:** This is a test. Predictions are indicative and not financial advice.  
-
-🚀 **What you can do here:**  
-- Explore company ESG vs market volatility.  
-- Predict daily volatility for any US ticker.  
-- Simulate a portfolio to assess combined ESG-risk trade-offs.  
-- Analyze model performance and feature importance.
+🔹 **Important:**  
+- ESG data comes from 2022-2023.  
+- Volatility is calculated using the most recent price data from Yahoo Finance, ensuring predictions reflect current market conditions.  
+- Predictions are **experimental** and for demonstration purposes, but show potential for understanding ESG vs risk.  
 
 **Created by:** Gina Pedrosa, Erika Pablos, and Lielia Rodas
 """)
@@ -46,6 +33,14 @@ METRICS_PATH = "src/data/lgbm_mix_model_metrics.json"
 DATASET_PATH = "src/data/dataset_final.csv"
 CATEGORICAL_RULES_PATH = "src/data/categorical_rules.json"
 
+# ========================
+# STREAMLIT CONFIG
+# ========================
+st.set_page_config(
+    page_title="ESG & Market Volatility Dashboard",
+    page_icon=":bar_chart:",
+    layout="wide"
+)
 port = int(os.environ.get("PORT", 8501))
 
 # ========================
@@ -131,17 +126,21 @@ def predict_with_dataset(ticker: str):
     y_pred = model.predict(X)
     return ticker_data, y_pred
 
-def predict_with_yfinance(ticker: str):
-    yf_data = yf.download(ticker, period="max", progress=False)  # Full history
+def predict_with_current_prices(ticker: str):
+    yf_data = yf.download(ticker, period="1y", progress=False)
     if yf_data.empty:
         return None, None
+    # Ensure columns exist
+    if 'Adj Close' not in yf_data.columns:
+        # st.warning(f("'Adj Close' not found for {ticker}, using 'Close' instead."))
+        yf_data['Adj Close'] = yf_data['Close']
     yf_data["Return"] = yf_data["Adj Close"].pct_change()
     yf_data["Daily_Volatility"] = yf_data["Return"].rolling(window=30).std() * np.sqrt(252)
     X_new = pd.DataFrame(index=yf_data.index)
     for col in TRAINING_FEATURES:
         X_new[col] = yf_data[col].fillna(0) if col in yf_data.columns else -1
     X_new = X_new[TRAINING_FEATURES]
-    print_debug(X_new, "predict_with_yfinance")
+    print_debug(X_new, "predict_with_current_prices")
     y_pred = model.predict(X_new.tail(1))
     return yf_data, y_pred
 
@@ -170,17 +169,14 @@ selected_tickers = st.sidebar.multiselect("Select Tickers:",
 st.sidebar.header("Ticker Input")
 ticker_input = st.sidebar.text_input("Enter any US ticker symbol:", "AAPL").upper()
 
-if ticker_input in data["Ticker"].unique():
-    df_ticker, preds = predict_with_dataset(ticker_input)
-    ticker_source = "dataset"
-else:
-    df_ticker, preds = predict_with_yfinance(ticker_input)
-    ticker_source = "yfinance"
-
+# Always get latest prices, even for dataset tickers
+df_ticker, preds = predict_with_current_prices(ticker_input)
 if df_ticker is None or df_ticker.empty:
     st.sidebar.error(f"Ticker {ticker_input} not found or cannot fetch data.")
     df_ticker = pd.DataFrame()
     preds = []
+
+ticker_source = "yfinance"  # Always showing current data
 
 # ========================
 # TABS
@@ -193,94 +189,95 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     ":cog: Model Performance"
 ])
 
-# ------------------------
-# TAB 1 - Company Overview
-# ------------------------
+# TAB 1
 with tab1:
-    st.header(f"Company Overview - {ticker_input} ({ticker_source})")
+    st.header(f"Company Overview - {ticker_input}")
     st.markdown("""
-    **Description:** Shows key metrics of the selected company.  
-    **Includes:** ESG Score history 2022-2023, daily volatility calculated using full historical YFinance prices, and adjusted close price.  
-    **Usage:** Quickly check ESG performance and market stability. Hover over rows to explore details.
+    **Description:** Key company metrics using latest stock prices.  
+    **Contains:** ESG Score, Daily Volatility, Adjusted Close price.  
+    **Usage:** Quickly check ESG and market stability.
     """)
     if not df_ticker.empty:
-        kpi_data = df_ticker[["ESG Score","Daily_Volatility","Adj Close"]].mean().to_frame().T
-        st.dataframe(
-            kpi_data.style.background_gradient(cmap="Greens", subset=["ESG Score"])
-                     .highlight_max(subset=["Adj Close"], color="lightblue")
-        )
+        kpi_data = pd.DataFrame({
+            "ESG Score": [data[data["Ticker"]==ticker_input]["ESG Score"].mean()],
+            "Daily Volatility": [df_ticker["Daily_Volatility"].mean()],
+            "Adj Close": [df_ticker["Adj Close"].mean()]
+        })
+        st.dataframe(kpi_data.style.background_gradient(cmap="Greens", subset=["ESG Score"])
+                                     .highlight_max(subset=["Adj Close"], color="lightblue"))
 
-# ------------------------
-# TAB 2 - ESG vs Volatility
-# ------------------------
+# TAB 2
 with tab2:
-    st.header(f"ESG Score vs Daily Volatility - {ticker_input} ({ticker_source})")
+    st.header(f"ESG Score vs Daily Volatility - {ticker_input}")
     st.markdown("""
-    **Description:** Scatter plot of ESG Score vs Daily Volatility.  
-    **Includes:** Each point represents a company (if in dataset), sized by stock price.  
-    **Usage:** Check if higher ESG scores are associated with lower volatility.
+    **Description:** Scatter plot showing the relationship between ESG score and daily volatility.  
+    **Note:** ESG score is annual (2022-2023) but volatility uses latest Yahoo Finance data.  
+    **Usage:** Understand potential correlation between ESG performance and stock risk.
     """)
-    if ticker_source == "dataset" and not df_ticker.empty:
-        fig2 = px.scatter(
-            df_ticker, x="ESG Score", y="Daily_Volatility",
-            hover_data=["Ticker","Adj Close","Governance Score","Environment Score","Social Score"],
-            size="Adj Close", color_discrete_sequence=["#2E8B57"]
-        )
+    if not df_ticker.empty:
+        esg_val = data[data["Ticker"]==ticker_input]["ESG Score"].mean()
+        x_vals = np.repeat(esg_val, len(df_ticker))
+        y_vals = df_ticker['Daily_Volatility'].values
+        fig2 = px.scatter(x=x_vals, y=y_vals, labels={'x':'ESG Score','y':'Daily Volatility'})
         st.plotly_chart(fig2, use_container_width=True)
-    else:
-        st.info("ESG data not available for this ticker.")
 
-# ------------------------
-# TAB 3 - Prediction
-# ------------------------
+# TAB 3
 with tab3:
-    st.header(f"Predict Volatility - {ticker_input} ({ticker_source})")
+    st.header(f"Predict Volatility - {ticker_input}")
     st.markdown("""
-    **Description:** Forecast short-term daily volatility using ML model.  
-    **Data:** ESG 2022-2023 + full historical prices from Yahoo Finance.  
-    **Usage:** Visualize historical volatility and prediction for the latest day.
+    **Description:** Forecast short-term daily volatility using latest market data.  
+    **Usage:** Line chart shows historical volatility, metric shows predicted latest value.
     """)
     if not df_ticker.empty:
         fig_pred = go.Figure()
-        x_vals = df_ticker.index if ticker_source=="yfinance" else df_ticker["Date"]
         fig_pred.add_trace(go.Scatter(
-            x=x_vals, y=df_ticker["Daily_Volatility"], mode="lines",
-            name="Volatility", line=dict(color="#1F77B4", width=3)
+            x=df_ticker.index, y=df_ticker["Daily_Volatility"],
+            mode="lines", name="Volatility", line=dict(color="#1F77B4", width=3)
         ))
         st.plotly_chart(fig_pred, use_container_width=True)
-        if len(preds)>0:
-            st.metric("Predicted Volatility (latest day)", f"{preds[-1]:.4f}")
+        if preds is not None and len(preds) > 0:
+            st.metric("Predicted Volatility (latest)", f"{preds[-1]:.4f}")
 
-# ------------------------
-# TAB 4 - Portfolio Simulation
-# ------------------------
+# TAB 4
 with tab4:
     st.header("Portfolio Simulation")
     st.markdown("""
-    **Description:** Analyze selected tickers as a portfolio.  
-    **Includes:** Evolution of daily volatility, average volatility per ticker.  
-    **Usage:** Select tickers in sidebar. Assess combined portfolio risk and ESG trade-offs.
+    **Description:** Compare volatility evolution for selected tickers.  
+    **Usage:** Assess portfolio risk and ESG trade-offs.
     """)
     if selected_tickers:
-        port_data = data[data["Ticker"].isin(selected_tickers)]
-        fig_port = px.line(
-            port_data, x="Date", y="Daily_Volatility", color="Ticker",
-            title="Portfolio Volatility Evolution",
-            color_discrete_sequence=px.colors.qualitative.Set2
-        )
-        st.plotly_chart(fig_port, use_container_width=True)
-        avg_vol = port_data.groupby("Ticker")["Daily_Volatility"].mean()
-        st.bar_chart(avg_vol)
+        port_data = pd.DataFrame()
+        for t in selected_tickers:
+            df_t, _ = predict_with_current_prices(t)
+            if df_t is not None:
+                df_t["Ticker"] = t
+                port_data = pd.concat([port_data, df_t])
+    if not port_data.empty:
+                port_data = port_data.copy()
+                # Si las columnas son MultiIndex, conviértelas a columnas simples
+                if isinstance(port_data.columns, pd.MultiIndex):
+                    port_data.columns = ['_'.join([str(i) for i in col if i]) for col in port_data.columns.values]
+                # Si 'Daily_Volatility' no está en las columnas, intenta buscarla
+                if 'Daily_Volatility' not in port_data.columns:
+                    # Buscar cualquier columna que contenga 'Daily_Volatility'
+                    dv_cols = [col for col in port_data.columns if 'Daily_Volatility' in str(col)]
+                    if dv_cols:
+                        port_data['Daily_Volatility'] = port_data[dv_cols[0]]
+                fig_port = px.line(
+                    port_data, x=port_data.index, y="Daily_Volatility", color="Ticker",
+                    title="Portfolio Volatility Evolution", color_discrete_sequence=px.colors.qualitative.Set2
+                )
+                st.plotly_chart(fig_port, use_container_width=True)
+                avg_vol = port_data.groupby("Ticker")["Daily_Volatility"].mean()
+                st.bar_chart(avg_vol)
 
-# ------------------------
-# TAB 5 - Model Performance
-# ------------------------
+# TAB 5
 with tab5:
     st.header("Model Performance")
     st.markdown("""
-    **Description:** View predictive model metrics and feature importance.  
-    **Includes:** R², MSE, MAE, and importance of features.  
-    **Usage:** Understand model quality and main drivers of volatility predictions.
+    **Description:** View ML model metrics and feature importance.  
+    **Contains:** R², MSE, MAE, and importance of features.  
+    **Usage:** Understand model quality and main drivers of predictions.
     """)
     col1, col2, col3 = st.columns(3)
     col1.metric("R² Score", f"{metrics.get('R2_test',0):.3f}")
