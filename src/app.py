@@ -28,8 +28,8 @@ This dashboard allows you to explore **US stocks** with ESG scores and predict *
 # ========================
 # PATHS
 # ========================
-MODEL_PATH = "src/data/lgbm_mix_model.pkl"
-METRICS_PATH = "src/data/lgbm_mix_model_metrics.json"
+MODEL_PATH = "src/data/best_model_XGBoost_mix.pkl"
+METRICS_PATH = "src/data/metrics_XGBoost_mix.json"
 DATASET_PATH = "src/data/dataset_final.csv"
 CATEGORICAL_RULES_PATH = "src/data/categorical_rules.json"
 
@@ -130,12 +130,12 @@ def predict_with_hybrid(ticker: str):
     yf_data = yf.download(ticker, period="1y", progress=False)
     if yf_data.empty:
         return None, None
-    # Asegura 'Adj Close'
+    
     if 'Adj Close' not in yf_data.columns:
         yf_data['Adj Close'] = yf_data['Close']
     yf_data["Return"] = yf_data["Adj Close"].pct_change()
     yf_data["Daily_Volatility"] = yf_data["Return"].rolling(window=30).std() * np.sqrt(252)
-    # Si el ticker está en el dataset, usa features ESG/categóricas
+    
     esg_row = data[data["Ticker"] == ticker].iloc[-1] if ticker in data["Ticker"].unique() else None
     X_new = pd.DataFrame(index=yf_data.index)
     for col in TRAINING_FEATURES:
