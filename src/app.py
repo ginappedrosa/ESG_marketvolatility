@@ -176,9 +176,9 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 with tab1:
     st.header(f"Company Overview - {ticker_input}")
     st.markdown("""
-    **Description:** Key company metrics using latest stock prices.
-    **Contains:** ESG Score, Daily Volatility, Adjusted Close price.
-    **Usage:** Quickly check ESG and market stability.
+    **Description:** Key company metrics using the latest stock prices.
+    **Includes:** ESG Score, Daily Volatility, Adjusted Close price.
+    **Usage:** Quickly check ESG and market stability for the selected company.
     """)
     if not df_ticker.empty:
         kpi_data = pd.DataFrame({
@@ -191,25 +191,49 @@ with tab1:
 
 # TAB 2 - ESG Score vs Daily Volatility
 with tab2:
-    st.header(f"ESG Score vs Daily Volatility - {ticker_input}")
+    st.header(f"ESG Score vs Average Volatility - {ticker_input}")
     st.markdown("""
-    **Description:** Scatter plot showing the relationship between ESG score and daily volatility.
-    **Note:** ESG score is annual (2022-2023) but volatility uses latest Yahoo Finance data.
-    **Usage:** Understand potential correlation between ESG performance and stock risk.
+    **Description:** Here you can visually see the relationship between the ESG score and the company's average volatility.
+    - **ESG Score (Sustainalytics):** lower is better (less ESG risk, more responsible).
+    - **Average volatility:** lower means the stock price is more stable.
+
+    **Easy interpretation:**
+    - Point at bottom left: very responsible and stable company (ESG < 20 and low volatility).
+    - Point at top right: company with higher ESG risk and more unstable price.
+    - Green color means low ESG (<20), yellow medium (20-40), red high (>40).
     """)
     if not df_ticker.empty:
         esg_val = data[data["Ticker"]==ticker_input]["ESG Score"].mean()
-        x_vals = np.repeat(esg_val, len(df_ticker))
-        y_vals = df_ticker['Daily_Volatility'].values
-        fig2 = px.scatter(x=x_vals, y=y_vals, labels={'x':'ESG Score','y':'Daily Volatility'})
+        vol_mean = df_ticker["Daily_Volatility"].mean()
+        # Color by ESG
+        if esg_val < 20:
+            color = "green"
+        elif esg_val < 40:
+            color = "yellow"
+        else:
+            color = "red"
+        fig2 = px.scatter(x=[esg_val], y=[vol_mean], labels={'x':'ESG Score','y':'Average Volatility'}, color_discrete_sequence=[color])
+        fig2.update_traces(marker=dict(size=30))
+        fig2.update_layout(
+            xaxis=dict(range=[0, max(50, esg_val+10)]),
+            yaxis=dict(range=[0, max(0.1, vol_mean+0.02)]),
+            showlegend=False
+        )
         st.plotly_chart(fig2, use_container_width=True)
+        st.markdown(f"**Company:** {ticker_input} | **ESG Score:** {esg_val:.2f} | **Average Volatility:** {vol_mean:.4f}")
+        if esg_val < 20 and vol_mean < 0.02:
+            st.success("This company is very responsible and stable!")
+        elif esg_val > 40 and vol_mean > 0.05:
+            st.error("Company with high ESG risk and very unstable price.")
+        else:
+            st.info("Company with intermediate sustainability and stability profile.")
 
 # TAB 3- Predict Volatility
 with tab3:
     st.header(f"Predict Volatility - {ticker_input}")
     st.markdown("""
-    **Description:** Forecast short-term daily volatility using latest market data.
-    **Usage:** Line chart shows historical volatility, metric shows predicted latest value.
+    **Description:** Forecast short-term daily volatility using the latest market data.
+    **Usage:** The line chart shows historical volatility, and the metric displays the predicted latest value.
     """)
     if not df_ticker.empty:
         fig_pred = go.Figure()
@@ -225,8 +249,8 @@ with tab3:
 with tab4:
     st.header("Portfolio Simulation")
     st.markdown("""
-    **Description:** Compare volatility evolution for selected tickers.
-    **Usage:** Assess portfolio risk and ESG trade-offs.
+    **Description:** Compare the volatility evolution for selected tickers.
+    **Usage:** Assess portfolio risk and ESG trade-offs visually.
     """)
     if selected_tickers:
         port_data = pd.DataFrame()
@@ -258,11 +282,11 @@ with tab4:
 with tab5:
     st.header("Model Performance")
     st.markdown("""
-    **Description:** View ML model metrics and feature importance.
-    **Contains:** R², RMSE, MAE, and importance of features.
-    **Usage:** Understand model quality and main drivers of predictions.
-    """)
-
+    **Description:** View machine learning model metrics and feature importance.
+    **Includes:** R², RMSE, MAE, and feature importance.
+    **Usage:** Understand model quality and the main drivers of predictions.
+    """
+    )
     col1, col2, col3 = st.columns(3)
     col1.metric("R² Score", f"{metrics.get('r2_test', 0):.3f}")
     col2.metric("RMSE", f"{metrics.get('rmse_test', 0):.3f}")

@@ -1,3 +1,4 @@
+
 import pandas as pd
 import joblib
 import json
@@ -5,7 +6,7 @@ from xgboost import XGBRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
-# Cargar dataset
+# Paths
 DATASET_PATH = "src/data/dataset_final.csv"
 CATEGORICAL_RULES_PATH = "src/data/categorical_rules.json"
 MODEL_PATH = "src/data/best_model_XGBoost_mix.pkl"
@@ -19,7 +20,7 @@ def apply_categorical_encoding(df, rules):
             df[f"{col}_n"] = -1
     return df
 
-# Cargar datos
+# Load data
 categorical_rules = json.load(open(CATEGORICAL_RULES_PATH))
 df = pd.read_csv(DATASET_PATH)
 df = df.drop(columns=["CEO Full Name", "CEO Status"], errors="ignore")
@@ -31,25 +32,25 @@ TRAINING_FEATURES = [
     "Year","Daily_Return"
 ] + [f"{col}_n" for col in categorical_rules.keys()] + ["DUMMY_FILL"]
 
-# Rellenar DUMMY_FILL si no existe
+# Fill DUMMY_FILL if not present
 if "DUMMY_FILL" not in df.columns:
     df["DUMMY_FILL"] = -1
 
-# Eliminar filas con NaN en features
+# Remove rows with NaN in features
 X = df[TRAINING_FEATURES].fillna(-1)
 y = df["Daily_Volatility"].fillna(-1)
 
 # Split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Entrenar modelo
+# Train model
 model = XGBRegressor(n_estimators=100, max_depth=5, random_state=42)
 model.fit(X_train, y_train)
 
-# Guardar modelo
+# Save model
 joblib.dump(model, MODEL_PATH)
 
-# Métricas
+# Metrics
 y_pred = model.predict(X_test)
 metrics = {
     "r2_test": r2_score(y_test, y_pred),
@@ -60,4 +61,4 @@ metrics = {
 with open(METRICS_PATH, "w") as f:
     json.dump(metrics, f, indent=2)
 
-print("Modelo y métricas guardados correctamente.")
+print("Model and metrics saved successfully.")
