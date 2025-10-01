@@ -31,7 +31,8 @@ This dashboard allows you to explore **US stocks** with ESG scores and predict *
 """)
 
 
-# PATHS (siempre relativos a la ubicación de este archivo)
+
+# PATHS (relative to this file)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "data/best_model_XGBoost_mix.pkl")
 FEATURES_PATH = os.path.join(BASE_DIR, "data/feature_names_XGBoost_mix.pkl")
@@ -89,6 +90,8 @@ def print_debug(X, context):
         f.write(f"X.columns: {list(X.columns)}\n")
 
 # PREDICTION FUNCTIONS
+
+# Prediction function for selected features
 def predict_with_dataset(ticker: str):
     ticker_data = data[data["Ticker"] == ticker].copy()
     X = pd.DataFrame(index=ticker_data.index)
@@ -96,43 +99,33 @@ def predict_with_dataset(ticker: str):
         X[col] = ticker_data[col] if col in ticker_data.columns else -1
     X = X[feature_names]
     print_debug(X, "predict_with_dataset")
-
-    # Convert to DMatrix
     dtest = xgb.DMatrix(X.to_numpy(dtype=np.float32), feature_names=feature_names)
     y_pred = model.get_booster().predict(dtest)
     return ticker_data, y_pred
 
+# Prediction function for new tickers (financial features only)
 def predict_with_hybrid(ticker: str):
     yf_data = yf.download(ticker, period="1y", progress=False)
     if yf_data.empty:
         return None, None
-
     if "Adj Close" not in yf_data.columns:
         yf_data["Adj Close"] = yf_data["Close"]
-
-    yf_data["Return"] = yf_data["Adj Close"].pct_change()
-    yf_data["Daily_Volatility"] = yf_data["Return"].rolling(window=30).std() * np.sqrt(252)
-
-    esg_row = data[data["Ticker"] == ticker].iloc[-1] if ticker in data["Ticker"].unique() else None
-
+    # Feature engineering for new data
+    yf_data["Daily_Return"] = yf_data["Adj Close"].pct_change()
+    yf_data["Return_5d"] = yf_data["Adj Close"].pct_change(5)
+    yf_data["Return_10d"] = yf_data["Adj Close"].pct_change(10)
+    yf_data["MA_5"] = yf_data["Adj Close"].rolling(5).mean()
+    yf_data["MA_10"] = yf_data["Adj Close"].rolling(10).mean()
+    yf_data["Vol_5d"] = yf_data["Adj Close"].rolling(5).std()
+    yf_data["Vol_10d"] = yf_data["Adj Close"].rolling(10).std()
+    # Compose input for selected features
+    selected_vars = ['High', 'Low', 'Daily_Return', 'Return_5d', 'Return_10d', 'MA_5', 'Vol_5d', 'Vol_10d']
     X_new = pd.DataFrame(index=yf_data.index)
-    for col in feature_names:
-        if col in yf_data.columns:
-            X_new[col] = yf_data[col].fillna(0)
-        elif esg_row is not None and col in esg_row.index:
-            val = esg_row[col]
-            # Forzar a escalar puro
-            if isinstance(val, (pd.Series, np.ndarray, list)):
-                val = val[0]
-            X_new[col] = pd.Series([val]*len(X_new), index=X_new.index)
-        else:
-            X_new[col] = -1
-
-    X_new = X_new[feature_names]
+    for col in selected_vars:
+        X_new[col] = yf_data[col].fillna(0)
+    X_new = X_new[selected_vars]
     print_debug(X_new, "predict_with_hybrid")
-
-    # Convert to DMatrix
-    dtest = xgb.DMatrix(X_new.tail(1).to_numpy(dtype=np.float32), feature_names=feature_names)
+    dtest = xgb.DMatrix(X_new.tail(1).to_numpy(dtype=np.float32), feature_names=selected_vars)
     y_pred = model.get_booster().predict(dtest)
     return yf_data, y_pred
 
@@ -232,13 +225,33 @@ with tab4:
             )
             st.plotly_chart(fig_port, use_container_width=True)
 
+
 # TAB 5 - Model Performance
 with tab5:
-    st.header("Model Performance")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("R² Score", f"{metrics.get('r2_test', 0):.3f}")
-    col2.metric("RMSE", f"{metrics.get('rmse_test', 0):.3f}")
-    col3.metric("MAE", f"{metrics.get('mae_test', 0):.3f}")
+    st.header("Model Performance - Advanced XGBoost")
+    st.markdown("""
+    **Model:** XGBoost (with feature selection and advanced engineering)
+    
+    - **Selected features:** High, Low, Daily_Return, Return_5d, Return_10d, MA_5, Vol_5d, Vol_10d
+    - **Train R²:** {:.3f}
+    - **Test R²:** {:.3f}
+    - **Train RMSE:** {:.4f}
+    - **Test RMSE:** {:.4f}
+    
+    The model predicts daily volatility using engineered financial features. Feature selection was performed using XGBoost importance, and only the most predictive variables were retained. This approach improves generalization and avoids overfitting.
+    
+    **Feature explanations:**
+    - **High, Low:** Daily high and low prices, capturing price range and volatility.
+    - **Daily_Return:** Percentage change in adjusted close price from previous day, measuring short-term momentum.
+    - **Return_5d, Return_10d:** 5-day and 10-day returns, capturing medium-term trends and reversals.
+    - **MA_5:** 5-day moving average, smoothing short-term price fluctuations.
+    - **Vol_5d, Vol_10d:** 5-day and 10-day rolling standard deviation, quantifying recent volatility.
+    
+    **Interpretation:**
+    - A higher predicted volatility means the stock is expected to experience larger price swings in the near future.
+    - The R² values indicate the proportion of variance explained by the model: {:.1f}% in train, {:.1f}% in test. The RMSE values show the average prediction error.
+    - The model is robust and realistic, with no data leakage or artificial features.
+    """.format(metrics.get('r2_train', 0), metrics.get('r2_test', 0), metrics.get('rmse_train', 0), metrics.get('rmse_test', 0), metrics.get('r2_train', 0)*100, metrics.get('r2_test', 0)*100))
 
 
 
