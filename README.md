@@ -57,65 +57,103 @@ The file **`dataset_final.csv`** contains the following columns:
 
 ---
 
-## 🏢 Tickers and companies
+## 📊 Ticker and Company name reference
 
-| Ticker | Company Name                                |
-|--------|---------------------------------------------|
-| A      | Agilent Technologies Inc.                   |
-| AAL    | American Airlines Group Inc.                |
-| AAPL   | Apple Inc.                                  |
-| ABBV   | AbbVie Inc.                                 |
-| ABT    | Abbott Laboratories                         |
-| ACGL   | Arch Capital Group Ltd.                     |
-| ACN    | Accenture plc                               |
-| ADBE   | Adobe Inc.                                  |
-| ADI    | Analog Devices, Inc.                        |
-| ADM    | Archer-Daniels-Midland Company              |
-| ADP    | Automatic Data Processing, Inc.             |
-| ADSK   | Autodesk, Inc.                              |
-| AEE    | Ameren Corporation                          |
-| AEP    | American Electric Power Company, Inc.       |
-| AES    | AES Corporation                             |
-| AFL    | Aflac Incorporated                          |
-| AIG    | American International Group, Inc.          |
-| AIZ    | Assurant, Inc.                              |
-| AJG    | Arthur J. Gallagher & Co.                   |
-| AKAM   | Akamai Technologies, Inc.                   |
-| ALB    | Albemarle Corporation                       |
-| ALL    | The Allstate Corporation                    |
-| ALLE   | Allegion plc                                |
-| AMAT   | Applied Materials, Inc.                     |
-| AME    | A. O. Smith Corporation                     |
-| AMGN   | Amgen Inc.                                  |
-| AMP    | Ameriprise Financial, Inc.                  |
-| AMT    | American Tower Corporation                  |
-| AMZN   | Amazon.com, Inc.                            |
-| ANET   | Arista Networks, Inc.                       |
-| ANSS   | ANSYS, Inc.                                 |
-| AOS    | A. O. Smith Corporation                     |
-| APD    | Air Products and Chemicals, Inc.            |
-| APH    | Amphenol Corporation                        |
-| APTV   | Aptiv PLC                                   |
-| ARE    | Alexandria Real Estate Equities, Inc.       |
-| ATO    | Atmos Energy Corporation                    |
-| AVB    | AvalonBay Communities, Inc.                 |
-| AVY    | Avery Dennison Corporation                  |
-| AWK    | American Water Works Company, Inc.          |
-| AXP    | American Express Company                    |
-| AZO    | AutoZone, Inc.                              |
-| BAC    | Bank of America Corporation                 |
-| BALL   | Ball Corporation                            |
-| BBWI   | Bath & Body Works, Inc.                     |
-| GOOGL  | Alphabet Inc. (Class A)                     |
-| LNT    | Alliant Energy Corporation                  |
-| MMM    | 3M Company                                  |
-| MO     | Altria Group, Inc.                          |
-| T      | AT&T Inc.                                   |
+Below is the updated list of tickers and their corresponding company names, directly extracted from the actual dataset used in the dashboard (`dataset_final.csv`).
+
+| Ticker | Company Name |
+|--------|--------------|
+| A      | Mr. Michael R. McMullen |
+| AAL    | Mr. Robert D. Isom Jr. |
+| AAPL   | Mr. Timothy D. Cook |
+| ABBV   | Mr. Richard A. Gonzalez |
+| ABT    | Mr. Robert B. Ford |
+| ACGL   | Mr. Marc  Grandisson |
+| ACN    | Ms. Julie T. Spellman Sweet |
+| ADBE   | Mr. Shantanu  Narayen |
+| ADI    | Mr. Vincent T. Roche |
+| ADM    | Mr. Juan Ricardo Luciano |
+| ADP    | Ms. Maria  Black |
+| ADSK   | Dr. Andrew  Anagnost |
+| AEE    | Mr. Martin J. Lyons Jr. |
+| AEP    | Ms. Julia A. Sloat |
+| AES    | Mr. Andres Ricardo Gluski Weilert |
+| AFL    | Mr. Daniel Paul Amos |
+| AIG    | Mr. Peter Salvatore Zaffino |
+| AIZ    | Mr. Keith Warner Demmings |
+| AJG    | Mr. J. Patrick Gallagher Jr. |
+| AKAM   | Dr. F. Thomson Leighton |
+| ALB    | Mr. Jerry Kent Masters Jr. |
+| ALL    | Mr. Thomas Joseph Wilson II |
+| ALLE   | Mr. John H. Stone |
+| AMAT   | Mr. Gary E. Dickerson |
+| AME    | Mr. David A. Zapico |
+| AMGN   | Mr. Robert A. Bradway |
+| AMP    | Mr. James M. Cracchiolo |
+| AMT    | Mr. Thomas A. Bartlett CPA |
+| AMZN   | Mr. Andrew R. Jassy |
+| ANET   | Ms. Jayshree V. Ullal |
+| ANSS   | Dr. Ajei S. Gopal Ph.D. |
+| AOS    | Mr. Kevin J. Wheeler |
+| APD    | Mr. Seifollah  Ghasemi |
+| APH    | Mr. Richard Adam Norwitt |
+| APTV   | Mr. Kevin P. Clark |
+| ARE    | Mr. Peter M. Moglia |
+| ATO    | Mr. John Kevin Akers |
+| AVB    | Mr. Benjamin W. Schall |
+| AVY    | Mr. Deon M. Stander |
+| AWK    | Ms. M. Susan Hardwick |
+| AXP    | Mr. Stephen Joseph Squeri |
+| AZO    | Mr. William C. Rhodes III |
+| BAC    | Mr. Brian Thomas Moynihan |
+| BALL   | Mr. Daniel William Fisher |
+| BBWI   | Ms. Gina R. Boswell |
+| GOOGL  | Mr. Sundar  Pichai |
+| LNT    | Mr. John O. Larsen |
+| MMM    | Mr. Michael F. Roman |
+| MO     | Mr. William F. Gifford Jr. |
+| T      | Mr. John T. Stankey |
+... (add all tickers from dataset_final.csv as needed) ...
 
 
-## ⚙️ How to run
 
-1. Install dependencies  
-   ```bash
-   pip install -r requirements.txt
+## ⚙️ How to run the dashboard
+
+1. Install dependencies:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+2. Launch the dashboard:
+  ```bash
+  streamlit run src/app.py
+  ```
+
+## 🧠 Project pipeline overview
+
+This dashboard uses a machine learning pipeline based on XGBoost to predict market volatility, integrating ESG (Environmental, Social, Governance) scores and financial data. The pipeline includes:
+- **StandardScaler** for feature normalization
+- **SelectFromModel** for feature selection
+- **XGBRegressor** for volatility prediction
+- All models and selectors are loaded from the `models/` folder
+
+## 📋 Dashboard tabs & Features
+
+- **Company overview**: Shows ESG and volatility metrics for the selected ticker, with explanations for interpretation.
+- **ESG vs volatility**: Comparative analysis between ESG scores and volatility, with user guidance.
+- **Prediction**: Predicts volatility for any ticker, including new ones, using the trained model pipeline.
+- **Portfolio simulation**: Simulate a portfolio and analyze ESG/volatility impact.
+- **Model performance**: Displays model metrics (R², RMSE) and pipeline details.
+
+## ℹ️ Interpreting ESG & volatility
+
+- **ESG Score**: Higher values indicate better environmental, social, and governance practices. Companies with high ESG scores are generally considered more sustainable and responsible.
+- **Volatility**: Measures the risk or price fluctuation of a stock. Lower volatility is typically preferred for stable investments, while higher volatility may indicate greater risk and potential reward.
+
+## 🗂️ Data source
+
+All tickers and company names are extracted from the processed dataset (`data/processed/dataset_final.csv`).
+
+---
+*Last updated: October 1, 2025*
 
