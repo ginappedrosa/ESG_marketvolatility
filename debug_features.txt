@@ -778,3 +778,91 @@ X.columns: ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume', 'Year', 'Dail
 ==== predict_with_hybrid ====
 X.shape: (250, 16)
 X.columns: ['Adj Close', 'Close', 'High', 'Low', 'Open', 'Volume', 'Year', 'Daily_Return', 'Ticker_n', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date_n', 'ESG Status_n', 'CEO Gender_n']
+
+==== predict_with_hybrid ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_hybrid ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_hybrid ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (250, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (251, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (251, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (251, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (251, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (251, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']
+
+==== predict_with_dataset ====
+X.shape: (251, 8)
+X.columns: ['Date', 'Close', 'Volume', 'ESG Score', 'Governance Score', 'Environment Score', 'Social Score', 'ESG Score Date']

@@ -1,10 +1,10 @@
- # ESG & Stock Market Volatility Prediction 📊🌱🤖
+ # ESG & Stock market volatility prediction 📊🌱🤖
 
 **Authors**: Gina Pedrosa, Erika Pablos, Lielia Rodas  
 
 ---
 
-## 📌 Project Overview
+## 📌 Project overview
 
 This project integrates **financial stock market data** with **ESG (Environmental, Social, and Governance) ratings** to build a set of **machine learning models** capable of predicting **daily stock returns and volatility**.  
 
@@ -28,7 +28,7 @@ The workflow includes:
 
 ---
 
-## 📊 Dataset Description
+## 📊 Dataset description
 
 The file **`dataset_final.csv`** contains the following columns:
 
@@ -57,7 +57,7 @@ The file **`dataset_final.csv`** contains the following columns:
 
 ---
 
-## 🏢 Tickers and Companies
+## 🏢 Tickers and companies
 
 | Ticker | Company Name                                |
 |--------|---------------------------------------------|
@@ -113,7 +113,7 @@ The file **`dataset_final.csv`** contains the following columns:
 | T      | AT&T Inc.                                   |
 
 
-## ⚙️ How to Run
+## ⚙️ How to run
 
 1. Install dependencies  
    ```bash
