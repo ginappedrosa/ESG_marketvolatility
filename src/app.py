@@ -19,10 +19,28 @@ st.set_page_config(
 ## MAIN PAGE INFO
 st.title(":bar_chart: ESG & Market Volatility Dashboard")
 MARKET_INDICES = {
-    "S&P 500": "^GSPC",
+    # Europe
     "EURO STOXX 50": "^STOXX50E",
     "IBEX 35": "^IBEX",
+    "DAX": "^GDAXI",
+    "CAC 40": "^FCHI",
+    "FTSE 100": "^FTSE",
+    # Americas
+    "S&P 500": "^GSPC",
+    "Nasdaq Composite": "^IXIC",
+    "Dow Jones Industrial Average": "^DJI",
+    "S&P/TSX Composite": "^GSPTSE",
+    "Ibovespa": "^BVSP",
+    "S&P/BMV IPC": "^MXX",
+    # Asia-Pacific
+    "Nikkei 225": "^N225",
+    "Hang Seng": "^HSI",
+    "Shanghai Composite": "000001.SS",
+    "KOSPI": "^KS11",
+    "S&P BSE SENSEX": "^BSESN",
+    "S&P/ASX 200": "^AXJO",
 }
+DEFAULT_INDICES = ["S&P 500", "EURO STOXX 50", "IBEX 35"]
 INDEX_PERIODS = {"3 months": "3mo", "6 months": "6mo", "1 year": "1y", "5 years": "5y"}
 
 
@@ -41,7 +59,7 @@ def load_index_closes(symbol: str, period: str) -> pd.Series:
 def show_market_indices():
     st.header("Market Indices")
     st.caption("Compare daily index closes and historical volatility using Yahoo Finance data.")
-    selected = st.multiselect("Indices", list(MARKET_INDICES), default=list(MARKET_INDICES))
+    selected = st.multiselect("Indices", list(MARKET_INDICES), default=DEFAULT_INDICES)
     period = st.selectbox("History", list(INDEX_PERIODS), index=2)
     if not selected:
         st.info("Select at least one index to compare.")
@@ -83,7 +101,7 @@ def show_market_indices():
         hide_index=True,
     )
     st.subheader("Change over the selected period (%)")
-    st.caption("Each index starts at 0% on its first available trading session in the period.")
+    st.caption("Each index starts at 0% on its first available session. Changes use the published index series without currency conversion.")
     st.line_chart(pd.DataFrame(performance).sort_index())
     st.subheader("Historical daily volatility (%)")
     st.caption("Rolling standard deviation of daily price returns over 20 trading sessions.")
