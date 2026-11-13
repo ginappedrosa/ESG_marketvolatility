@@ -129,6 +129,12 @@ Below is the updated list of tickers and their corresponding company names, dire
   streamlit run src/app.py
   ```
 
+## Market Indices
+
+Choose **Market Indices** in the sidebar to compare the S&P 500 (`^GSPC`), EURO STOXX 50 (`^STOXX50E`), and IBEX 35 (`^IBEX`). The view uses daily closing prices from Yahoo Finance over a selectable period of 3 months to 5 years.
+
+Each index's price change starts at 0% on its first available session. Historical daily volatility is the rolling standard deviation of 20 daily price returns. The **Company Analysis** view provides the original company-level ESG analysis and XGBoost predictions for the US stock universe.
+
 ## 🧠 Project pipeline overview
 
 This dashboard uses a machine learning pipeline based on XGBoost to predict market volatility, integrating ESG (Environmental, Social, Governance) scores and financial data. The pipeline includes:
