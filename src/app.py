@@ -18,6 +18,88 @@ st.set_page_config(
 
 ## MAIN PAGE INFO
 st.title(":bar_chart: ESG & Market Volatility Dashboard")
+MARKET_INDICES = {
+    "S&P 500": "^GSPC",
+    "EURO STOXX 50": "^STOXX50E",
+    "IBEX 35": "^IBEX",
+}
+INDEX_PERIODS = {"3 months": "3mo", "6 months": "6mo", "1 year": "1y", "5 years": "5y"}
+
+
+@st.cache_data(ttl=900)
+def load_index_closes(symbol: str, period: str) -> pd.Series:
+    history = yf.Ticker(symbol).history(period=period, interval="1d", auto_adjust=False)
+    if "Close" not in history:
+        return pd.Series(dtype=float)
+
+    closes = history["Close"].dropna().sort_index()
+    closes = closes[closes > 0]
+    closes.index = pd.DatetimeIndex(closes.index).tz_localize(None).normalize()
+    return closes[~closes.index.duplicated(keep="last")]
+
+
+def show_market_indices():
+    st.header("Market Indices")
+    st.caption("Compare daily index closes and historical volatility using Yahoo Finance data.")
+    selected = st.multiselect("Indices", list(MARKET_INDICES), default=list(MARKET_INDICES))
+    period = st.selectbox("History", list(INDEX_PERIODS), index=2)
+    if not selected:
+        st.info("Select at least one index to compare.")
+        return
+
+    performance = {}
+    volatility = {}
+    summary = []
+    for name in selected:
+        symbol = MARKET_INDICES[name]
+        try:
+            closes = load_index_closes(symbol, INDEX_PERIODS[period])
+        except Exception:
+            st.warning(f"Yahoo Finance could not load {name} ({symbol}). Try again later.")
+            continue
+        if closes.empty:
+            st.warning(f"No closing prices available for {name} ({symbol}) in this period.")
+            continue
+
+        change = (closes / closes.iloc[0] - 1) * 100
+        daily_returns = closes.pct_change()
+        rolling_volatility = daily_returns.rolling(20).std() * 100
+        performance[name] = change
+        volatility[name] = rolling_volatility
+        summary.append({
+            "Index": name,
+            "From": closes.index[0].date(),
+            "Through": closes.index[-1].date(),
+            "Close (points)": closes.iloc[-1],
+            "Change (%)": change.iloc[-1],
+            "Daily volatility (%)": rolling_volatility.iloc[-1],
+        })
+
+    if not summary:
+        return
+
+    st.dataframe(
+        pd.DataFrame(summary).round(2),
+        hide_index=True,
+    )
+    st.subheader("Change over the selected period (%)")
+    st.caption("Each index starts at 0% on its first available trading session in the period.")
+    st.line_chart(pd.DataFrame(performance).sort_index())
+    st.subheader("Historical daily volatility (%)")
+    st.caption("Rolling standard deviation of daily price returns over 20 trading sessions.")
+    volatility_history = pd.DataFrame(volatility).sort_index()
+    if volatility_history.notna().any().any():
+        st.line_chart(volatility_history)
+    else:
+        st.info("Volatility requires at least 21 closing prices.")
+
+
+view = st.sidebar.radio("View", ["Company Analysis", "Market Indices"])
+if view == "Market Indices":
+    show_market_indices()
+    st.stop()
+
+
 st.markdown("""
 Welcome to the **ESG & Market Volatility Dashboard** :earth_africa::chart_with_upwards_trend:  
 This dashboard allows you to explore **US stocks** with ESG scores and predict **daily volatility** using a machine learning model trained on S&P500 companies.  
