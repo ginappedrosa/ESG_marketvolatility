@@ -131,9 +131,15 @@ Below is the updated list of tickers and their corresponding company names, dire
 
 ## Market Indices
 
-Choose **Market Indices** in the sidebar to compare the S&P 500 (`^GSPC`), EURO STOXX 50 (`^STOXX50E`), and IBEX 35 (`^IBEX`). The view uses daily closing prices from Yahoo Finance over a selectable period of 3 months to 5 years.
+Choose **Market Indices** in the sidebar to compare 17 equity indices. The default selection is S&P 500, EURO STOXX 50, and IBEX 35. The view uses daily closes from Yahoo Finance over a selectable period of 3 months to 5 years.
 
-Each index's price change starts at 0% on its first available session. Historical daily volatility is the rolling standard deviation of 20 daily price returns. The **Company Analysis** view provides the original company-level ESG analysis and XGBoost predictions for the US stock universe.
+| Region | Available indices |
+| --- | --- |
+| Europe | EURO STOXX 50, IBEX 35 (Spain), DAX (Germany), CAC 40 (France), FTSE 100 (UK) |
+| Americas | S&P 500, Nasdaq Composite and Dow Jones Industrial Average (US), S&P/TSX Composite (Canada), Ibovespa (Brazil), S&P/BMV IPC (Mexico) |
+| Asia-Pacific | Nikkei 225 (Japan), Hang Seng (Hong Kong), Shanghai Composite (mainland China), KOSPI (South Korea), S&P BSE SENSEX (India), S&P/ASX 200 (Australia) |
+
+Each index starts at 0% on its first available session. Changes are calculated from the published index series without currency conversion. Index providers may use different dividend conventions. Historical daily volatility is the rolling standard deviation of 20 daily price returns. The **Company Analysis** view provides the original company-level ESG analysis and XGBoost predictions for the US stock universe.
 
 ## 🧠 Project pipeline overview
 
