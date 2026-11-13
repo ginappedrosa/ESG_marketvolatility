@@ -141,6 +141,14 @@ Choose **Market Indices** in the sidebar to compare 17 equity indices. The defau
 
 Each index starts at 0% on its first available session. Changes are calculated from the published index series without currency conversion. Index providers may use different dividend conventions. Historical daily volatility is the rolling standard deviation of 20 daily price returns. The **Company Analysis** view provides the original company-level ESG analysis and XGBoost predictions for the US stock universe.
 
+## Forward volatility and press
+
+Choose **Volatility Forecast** to estimate daily volatility over the next five trading sessions for the S&P 500, EURO STOXX 50, and IBEX 35. The target is the root mean square of the next five daily log returns, expressed in percent. The app compares recent realized volatility, Ridge regression, and gradient boosting with price-only and price-plus-press inputs. It selects the live model on earlier validation windows and reports MAE, RMSE, R² and high-volatility MAE on a later 63-session holdout. The historical error band is an empirical estimate from validation residuals.
+
+The press inputs are the global [Caldara–Iacoviello Geopolitical Risk Index](https://www.matteoiacoviello.com/gpr.htm), its threats and acts components, and its change. The bundled snapshot uses the first available archive release of each month since February 2022 and several recent weekly releases, accessed November 13, 2026. Each release becomes eligible the following day. The app attempts to refresh with the latest dated release. Recent international headlines are displayed as context; the model currently learns from the newspaper-based GPR series. The historical R² shown in Company Analysis comes from the original model and is measured on a different target and split.
+
+Company ESG risk ratings use the dated historical Sustainalytics extract. For an updated licensed export, set `ESG_RATINGS_CSV` to a readable CSV with the columns `Ticker,risk,available_date,source`. Use the date the rating became available (ISO format) and the same rating methodology. Historical predictions only see a rating available on the corresponding trading date. Missing risk ratings remain missing.
+
 ## 🧠 Project pipeline overview
 
 This dashboard uses a machine learning pipeline based on XGBoost to predict market volatility, integrating ESG (Environmental, Social, Governance) scores and financial data. The pipeline includes:
@@ -159,7 +167,7 @@ This dashboard uses a machine learning pipeline based on XGBoost to predict mark
 
 ## ℹ️ Interpreting ESG & volatility
 
-- **ESG Score**: Higher values indicate better environmental, social, and governance practices. Companies with high ESG scores are generally considered more sustainable and responsible.
+- **ESG Score**: The Sustainalytics score measures unmanaged ESG risk. Higher values indicate higher risk.
 - **Volatility**: Measures the risk or price fluctuation of a stock. Lower volatility is typically preferred for stable investments, while higher volatility may indicate greater risk and potential reward.
 
 ## 🗂️ Data source

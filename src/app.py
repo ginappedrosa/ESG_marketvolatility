@@ -9,6 +9,9 @@ import numpy as np
 import os
 import xgboost as xgb
 
+from esg_ratings import align_risk, load_ratings
+from forecast_view import show_forecast
+
 ## STREAMLIT CONFIG
 st.set_page_config(
     page_title="ESG & Market Volatility Dashboard",
@@ -138,9 +141,12 @@ def show_market_indices():
         st.info("Volatility requires at least 21 closing prices.")
 
 
-view = st.sidebar.radio("View", ["Company Analysis", "Market Indices"])
+view = st.sidebar.radio("View", ["Company Analysis", "Market Indices", "Volatility Forecast"])
 if view == "Market Indices":
     show_market_indices()
+    st.stop()
+if view == "Volatility Forecast":
+    show_forecast(MARKET_INDICES, load_index_closes)
     st.stop()
 
 
@@ -148,8 +154,8 @@ st.markdown("""
 Explore ESG scores and daily volatility forecasts for US stocks. The model was trained on S&P 500 companies.
 
 **Data and model**  
-- ESG data comes from 2022-2023.  
-- Volatility is calculated using the most recent price data from Yahoo Finance, ensuring predictions reflect current market conditions.  
+- Company ratings use the latest available dated record. The bundled ESG data is from 2022–2023.  
+- Prices come from Yahoo Finance.  
 - Predictions are **experimental** and for demonstration purposes, but show potential for understanding ESG vs risk.  
 
 **Created by:** Gina Pedrosa, Erika Pablos, and Lielia Rodas
@@ -200,8 +206,28 @@ model = load_model()
 feature_selector = load_feature_selector()
 scaler = load_scaler()
 metrics = load_metrics()
-data = load_data()
-categorical_rules = load_categorical_rules()
+
+@st.cache_data(ttl=900)
+def load_company_ratings(path):
+    return load_ratings(path)
+
+try:
+    company_ratings = load_company_ratings(os.environ.get("ESG_RATINGS_CSV"))
+except (OSError, ValueError, KeyError):
+    st.warning("The configured ESG import could not be read. Showing the historical ratings.")
+    company_ratings = load_company_ratings(None)
+
+def latest_company_rating(ticker):
+    today = pd.Timestamp.now(tz="UTC").tz_localize(None).normalize()
+    ratings = company_ratings.loc[
+        (company_ratings["Ticker"] == ticker) & (company_ratings["available_date"] <= today)
+    ]
+    return ratings.iloc[-1] if not ratings.empty else None
+
+def company_risk(ticker):
+    rating = latest_company_rating(ticker)
+    return rating["risk"] if rating is not None else np.nan
+
 
 ## Get feature names from selector
 if hasattr(feature_selector, 'get_support'):
@@ -238,7 +264,10 @@ def print_debug(X, context):
 
 def predict_with_dataset(ticker: str):
     # Always get updated data from Yahoo Finance
-    yf_data = yf.download(ticker, period="1y", progress=False)
+    try:
+        yf_data = yf.Ticker(ticker).history(period="1y", auto_adjust=False)
+    except Exception:
+        return None, None
     if yf_data.empty:
         return None, None
     if "Adj Close" not in yf_data.columns:
@@ -251,11 +280,14 @@ def predict_with_dataset(ticker: str):
     yf_data["MA_10"] = yf_data["Adj Close"].rolling(10).mean()
     yf_data["Vol_5d"] = yf_data["Adj Close"].rolling(5).std()
     yf_data["Vol_10d"] = yf_data["Adj Close"].rolling(10).std()
+    yf_data["ESG Score"] = align_risk(company_ratings, ticker, yf_data.index)
+    # The legacy model was trained with two-digit year values.
+    yf_data["Year"] = yf_data.index.year % 100
     scaler_features = scaler.feature_names_in_ if hasattr(scaler, 'feature_names_in_') else feature_selector.feature_names_in_
     X = pd.DataFrame(index=yf_data.index)
     for col in scaler_features:
-        X[col] = yf_data[col].fillna(0) if col in yf_data.columns else 0
-    X = X[scaler_features].fillna(0)
+        X[col] = yf_data[col] if col in yf_data.columns else np.nan
+    X = X[scaler_features]
     # Scale and select features
     X_scaled = scaler.transform(X)
     X_selected = feature_selector.transform(X_scaled)
@@ -306,8 +338,11 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 ## TAB 1 - Company Overview
 with tab1:
     st.header(f"Company Overview - {ticker_input}")
+    rating = latest_company_rating(ticker_input)
+    if rating is not None:
+        st.caption(f'ESG risk rating · {rating["available_date"]:%d %b %Y} · {rating["source"]}')
     if not df_ticker.empty:
-        esg_score = data[data["Ticker"] == ticker_input]["ESG Score"].mean()
+        esg_score = company_risk(ticker_input)
         adj_close = df_ticker["Adj Close"].mean() if "Adj Close" in df_ticker.columns else None
         if "Daily_Volatility" in df_ticker.columns:
             daily_vol = df_ticker["Daily_Volatility"].mean()
@@ -322,7 +357,9 @@ with tab1:
         })
         st.dataframe(kpi_data, hide_index=True)
         # User comments on ESG and Volatility
-        if esg_score < 20:
+        if pd.isna(esg_score):
+            st.info("ESG risk rating unavailable.")
+        elif esg_score < 20:
             st.info(f"ESG Score: {esg_score:.2f} (Excellent ESG risk, lower is better)")
         elif esg_score < 40:
             st.info(f"ESG Score: {esg_score:.2f} (Moderate ESG risk)")
@@ -339,8 +376,10 @@ with tab1:
 ## TAB 2 - ESG Score vs Volatility
 with tab2:
     st.header(f"ESG Score vs Average Volatility - {ticker_input}")
-    if not df_ticker.empty:
-        esg_val = data[data["Ticker"] == ticker_input]["ESG Score"].mean()
+    esg_val = company_risk(ticker_input)
+    if pd.isna(esg_val):
+        st.info("ESG risk rating unavailable.")
+    elif not df_ticker.empty:
         if "Daily_Volatility" in df_ticker.columns:
             vol_mean = df_ticker["Daily_Volatility"].mean()
         elif preds is not None and len(preds) > 0:
@@ -393,25 +432,18 @@ with tab3:
                 mode="lines", name="Volatility", line=dict(color="#36333A", width=3)
             ))
         else:
-            # Generate time series of predictions
-            scaler_features = scaler.feature_names_in_ if hasattr(scaler, 'feature_names_in_') else feature_selector.feature_names_in_
-            X_pred = pd.DataFrame(index=df_ticker.index)
-            for col in scaler_features:
-                X_pred[col] = df_ticker[col].fillna(0) if col in df_ticker.columns else 0
-            X_pred = X_pred[scaler_features].fillna(0)
-            X_scaled = scaler.transform(X_pred)
-            X_selected = feature_selector.transform(X_scaled)
-            y_pred_series = model.predict(X_selected)
             fig_pred.add_trace(go.Scatter(
-                x=df_ticker.index, y=y_pred_series,
+                x=df_ticker.index, y=preds,
                 mode="lines", name="Predicted Volatility", line=dict(color="#8C263A", width=3)
             ))
         st.plotly_chart(fig_pred, use_container_width=True)
         if preds is not None and len(preds) > 0:
-            st.metric("Predicted Volatility (latest)", f"{preds[-1]:.4f}")
+            st.metric("Legacy model estimate (latest)", f"{preds[-1]:.4f}")
         # User comments on ESG and Volatility
-        esg_score = data[data["Ticker"] == ticker_input]["ESG Score"].mean()
-        if esg_score < 20:
+        esg_score = company_risk(ticker_input)
+        if pd.isna(esg_score):
+            st.info("ESG risk rating unavailable.")
+        elif esg_score < 20:
             st.info(f"ESG Score: {esg_score:.2f} (Excellent ESG risk, lower is better)")
         elif esg_score < 40:
             st.info(f"ESG Score: {esg_score:.2f} (Moderate ESG risk)")
@@ -438,18 +470,12 @@ with tab4:
                 if "Daily_Volatility" in df_t.columns:
                     plot_data.append({"x": df_t.index, "y": df_t["Daily_Volatility"], "name": t})
                 else:
-                    scaler_features = scaler.feature_names_in_ if hasattr(scaler, 'feature_names_in_') else feature_selector.feature_names_in_
-                    X_pred = pd.DataFrame(index=df_t.index)
-                    for col in scaler_features:
-                        X_pred[col] = df_t[col].fillna(0) if col in df_t.columns else 0
-                    X_pred = X_pred[scaler_features].fillna(0)
-                    X_scaled = scaler.transform(X_pred)
-                    X_selected = feature_selector.transform(X_scaled)
-                    y_pred_series = model.predict(X_selected)
-                    plot_data.append({"x": df_t.index, "y": y_pred_series, "name": t})
+                    plot_data.append({"x": df_t.index, "y": preds_t, "name": t})
                 # User comments for each ticker
-                esg_score = data[data["Ticker"] == t]["ESG Score"].mean()
-                if esg_score < 20:
+                esg_score = company_risk(t)
+                if pd.isna(esg_score):
+                    st.info(f"{t}: ESG risk rating unavailable.")
+                elif esg_score < 20:
                     st.info(f"{t} ESG Score: {esg_score:.2f} (Excellent ESG risk, lower is better)")
                 elif esg_score < 40:
                     st.info(f"{t} ESG Score: {esg_score:.2f} (Moderate ESG risk)")
@@ -488,8 +514,8 @@ with tab5:
 
     **Interpretation:**
     - A higher predicted volatility means the stock is expected to experience larger price swings in the near future.
-    - The R² value indicates the proportion of variance explained by the model: {metrics.get('r2_test', 0)*100:.1f}% in test. The RMSE value shows the average prediction error.
-    - The model is robust and realistic, with no data leakage or artificial features.
+    - Historical R² (explained variance relative to the test mean): {metrics.get('r2_test', 0)*100:.1f}% in test. RMSE is the root mean squared error.
+    - These legacy results use a random historical split. Open Volatility Forecast for a chronological test on a forward target.
     """)
 
 
