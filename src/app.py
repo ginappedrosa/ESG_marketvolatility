@@ -12,12 +12,10 @@ import xgboost as xgb
 ## STREAMLIT CONFIG
 st.set_page_config(
     page_title="ESG & Market Volatility Dashboard",
-    page_icon=":bar_chart:",
     layout="wide"
 )
 
-## MAIN PAGE INFO
-st.title(":bar_chart: ESG & Market Volatility Dashboard")
+st.title("ESG & Market Volatility")
 MARKET_INDICES = {
     # Europe
     "EURO STOXX 50": "^STOXX50E",
@@ -54,6 +52,34 @@ def load_index_closes(symbol: str, period: str) -> pd.Series:
     closes = closes[closes > 0]
     closes.index = pd.DatetimeIndex(closes.index).tz_localize(None).normalize()
     return closes[~closes.index.duplicated(keep="last")]
+
+
+INDEX_LINE_COLORS = ("#8C263A", "#36333A", "#766A73", "#B54B5E", "#5C5963", "#704052")
+INDEX_LINE_DASHES = ("solid", "dash", "dot")
+
+
+def show_index_chart(history: pd.DataFrame, y_label: str):
+    fig = go.Figure()
+    for position, (name, values) in enumerate(history.items()):
+        fig.add_scatter(
+            x=values.index,
+            y=values,
+            name=name,
+            mode="lines",
+            line=dict(
+                color=INDEX_LINE_COLORS[position % len(INDEX_LINE_COLORS)],
+                dash=INDEX_LINE_DASHES[position // len(INDEX_LINE_COLORS) % len(INDEX_LINE_DASHES)],
+                width=2,
+            ),
+            hovertemplate="%{x|%d %b %Y}<br>%{y:.2f}%",
+        )
+    fig.update_layout(
+        yaxis_title=y_label,
+        legend=dict(orientation="h", y=-0.20),
+        margin=dict(l=8, r=8, t=12, b=8),
+    )
+    fig.update_yaxes(ticksuffix="%", zerolinecolor="#C5BDC1")
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def show_market_indices():
@@ -102,12 +128,12 @@ def show_market_indices():
     )
     st.subheader("Change over the selected period (%)")
     st.caption("Each index starts at 0% on its first available session. Changes use the published index series without currency conversion.")
-    st.line_chart(pd.DataFrame(performance).sort_index())
+    show_index_chart(pd.DataFrame(performance).sort_index(), "Price change")
     st.subheader("Historical daily volatility (%)")
     st.caption("Rolling standard deviation of daily price returns over 20 trading sessions.")
     volatility_history = pd.DataFrame(volatility).sort_index()
     if volatility_history.notna().any().any():
-        st.line_chart(volatility_history)
+        show_index_chart(volatility_history, "Daily volatility")
     else:
         st.info("Volatility requires at least 21 closing prices.")
 
@@ -119,10 +145,9 @@ if view == "Market Indices":
 
 
 st.markdown("""
-Welcome to the **ESG & Market Volatility Dashboard** :earth_africa::chart_with_upwards_trend:  
-This dashboard allows you to explore **US stocks** with ESG scores and predict **daily volatility** using a machine learning model trained on S&P500 companies.  
+Explore ESG scores and daily volatility forecasts for US stocks. The model was trained on S&P 500 companies.
 
-:small_blue_diamond: **Important:**  
+**Data and model**  
 - ESG data comes from 2022-2023.  
 - Volatility is calculated using the most recent price data from Yahoo Finance, ensuring predictions reflect current market conditions.  
 - Predictions are **experimental** and for demonstration purposes, but show potential for understanding ESG vs risk.  
@@ -271,11 +296,11 @@ if df_ticker is None or df_ticker.empty:
 
 ## TABS
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    ":office: Company Overview",
-    ":earth_africa: ESG vs Volatility",
-    ":crystal_ball: Prediction",
-    ":briefcase: Portfolio Simulation",
-    ":gear: Model Performance"
+    "Company Overview",
+    "ESG vs Volatility",
+    "Prediction",
+    "Portfolio Simulation",
+    "Model Performance"
 ])
 
 ## TAB 1 - Company Overview
@@ -295,8 +320,7 @@ with tab1:
             "Daily Volatility": [daily_vol],
             "Adj Close": [adj_close]
         })
-        st.dataframe(kpi_data.style.background_gradient(cmap="Greens", subset=["ESG Score"])
-                                     .highlight_max(subset=["Adj Close"], color="lightblue"))
+        st.dataframe(kpi_data, hide_index=True)
         # User comments on ESG and Volatility
         if esg_score < 20:
             st.info(f"ESG Score: {esg_score:.2f} (Excellent ESG risk, lower is better)")
@@ -324,11 +348,11 @@ with tab2:
         else:
             vol_mean = None
         if esg_val < 20:
-            color = "green"
+            color = "#5C5963"
         elif esg_val < 40:
-            color = "yellow"
+            color = "#704052"
         else:
-            color = "red"
+            color = "#8C263A"
         fig2 = px.scatter(x=[esg_val], y=[vol_mean], labels={'x': 'ESG Score', 'y': 'Average Volatility'}, color_discrete_sequence=[color])
         fig2.update_traces(marker=dict(size=30))
         st.plotly_chart(fig2, use_container_width=True)
@@ -366,7 +390,7 @@ with tab3:
         if "Daily_Volatility" in df_ticker.columns:
             fig_pred.add_trace(go.Scatter(
                 x=df_ticker.index, y=df_ticker["Daily_Volatility"],
-                mode="lines", name="Volatility", line=dict(color="#1F77B4", width=3)
+                mode="lines", name="Volatility", line=dict(color="#36333A", width=3)
             ))
         else:
             # Generate time series of predictions
@@ -380,7 +404,7 @@ with tab3:
             y_pred_series = model.predict(X_selected)
             fig_pred.add_trace(go.Scatter(
                 x=df_ticker.index, y=y_pred_series,
-                mode="lines", name="Predicted Volatility", line=dict(color="#FF7F0E", width=3)
+                mode="lines", name="Predicted Volatility", line=dict(color="#8C263A", width=3)
             ))
         st.plotly_chart(fig_pred, use_container_width=True)
         if preds is not None and len(preds) > 0:
