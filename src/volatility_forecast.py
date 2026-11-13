@@ -24,6 +24,8 @@ VARIANTS = {
 
 
 def build_features(closes, press):
+    closes = closes.copy()
+    closes.index = pd.DatetimeIndex(closes.index).as_unit("ns")
     returns = np.log(closes).diff()
     frame = pd.DataFrame(index=closes.index)
     for length in (5, 10, 22, 63):
@@ -37,6 +39,7 @@ def build_features(closes, press):
         return frame
 
     context = press.sort_values("available_date").copy()
+    context["available_date"] = context["available_date"].astype("datetime64[ns]")
     context["gpr_change"] = context["gpr"].diff()
     aligned = pd.merge_asof(
         frame, context, left_index=True, right_on="available_date",
