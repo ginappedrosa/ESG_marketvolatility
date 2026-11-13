@@ -129,6 +129,18 @@ Below is the updated list of tickers and their corresponding company names, dire
   streamlit run src/app.py
   ```
 
+## Market Indices
+
+Choose **Market Indices** in the sidebar to compare 17 equity indices. The default selection is S&P 500, EURO STOXX 50, and IBEX 35. The view uses daily closes from Yahoo Finance over a selectable period of 3 months to 5 years.
+
+| Region | Available indices |
+| --- | --- |
+| Europe | EURO STOXX 50, IBEX 35 (Spain), DAX (Germany), CAC 40 (France), FTSE 100 (UK) |
+| Americas | S&P 500, Nasdaq Composite and Dow Jones Industrial Average (US), S&P/TSX Composite (Canada), Ibovespa (Brazil), S&P/BMV IPC (Mexico) |
+| Asia-Pacific | Nikkei 225 (Japan), Hang Seng (Hong Kong), Shanghai Composite (mainland China), KOSPI (South Korea), S&P BSE SENSEX (India), S&P/ASX 200 (Australia) |
+
+Each index starts at 0% on its first available session. Changes are calculated from the published index series without currency conversion. Index providers may use different dividend conventions. Historical daily volatility is the rolling standard deviation of 20 daily price returns. The **Company Analysis** view provides the original company-level ESG analysis and XGBoost predictions for the US stock universe.
+
 ## 🧠 Project pipeline overview
 
 This dashboard uses a machine learning pipeline based on XGBoost to predict market volatility, integrating ESG (Environmental, Social, Governance) scores and financial data. The pipeline includes:

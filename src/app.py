@@ -12,17 +12,142 @@ import xgboost as xgb
 ## STREAMLIT CONFIG
 st.set_page_config(
     page_title="ESG & Market Volatility Dashboard",
-    page_icon=":bar_chart:",
     layout="wide"
 )
 
-## MAIN PAGE INFO
-st.title(":bar_chart: ESG & Market Volatility Dashboard")
-st.markdown("""
-Welcome to the **ESG & Market Volatility Dashboard** :earth_africa::chart_with_upwards_trend:  
-This dashboard allows you to explore **US stocks** with ESG scores and predict **daily volatility** using a machine learning model trained on S&P500 companies.  
+st.title("ESG & Market Volatility")
+MARKET_INDICES = {
+    # Europe
+    "EURO STOXX 50": "^STOXX50E",
+    "IBEX 35": "^IBEX",
+    "DAX": "^GDAXI",
+    "CAC 40": "^FCHI",
+    "FTSE 100": "^FTSE",
+    # Americas
+    "S&P 500": "^GSPC",
+    "Nasdaq Composite": "^IXIC",
+    "Dow Jones Industrial Average": "^DJI",
+    "S&P/TSX Composite": "^GSPTSE",
+    "Ibovespa": "^BVSP",
+    "S&P/BMV IPC": "^MXX",
+    # Asia-Pacific
+    "Nikkei 225": "^N225",
+    "Hang Seng": "^HSI",
+    "Shanghai Composite": "000001.SS",
+    "KOSPI": "^KS11",
+    "S&P BSE SENSEX": "^BSESN",
+    "S&P/ASX 200": "^AXJO",
+}
+DEFAULT_INDICES = ["S&P 500", "EURO STOXX 50", "IBEX 35"]
+INDEX_PERIODS = {"3 months": "3mo", "6 months": "6mo", "1 year": "1y", "5 years": "5y"}
 
-:small_blue_diamond: **Important:**  
+
+@st.cache_data(ttl=900)
+def load_index_closes(symbol: str, period: str) -> pd.Series:
+    history = yf.Ticker(symbol).history(period=period, interval="1d", auto_adjust=False)
+    if "Close" not in history:
+        return pd.Series(dtype=float)
+
+    closes = history["Close"].dropna().sort_index()
+    closes = closes[closes > 0]
+    closes.index = pd.DatetimeIndex(closes.index).tz_localize(None).normalize()
+    return closes[~closes.index.duplicated(keep="last")]
+
+
+INDEX_LINE_COLORS = ("#8C263A", "#36333A", "#766A73", "#B54B5E", "#5C5963", "#704052")
+INDEX_LINE_DASHES = ("solid", "dash", "dot")
+
+
+def show_index_chart(history: pd.DataFrame, y_label: str):
+    fig = go.Figure()
+    for position, (name, values) in enumerate(history.items()):
+        fig.add_scatter(
+            x=values.index,
+            y=values,
+            name=name,
+            mode="lines",
+            line=dict(
+                color=INDEX_LINE_COLORS[position % len(INDEX_LINE_COLORS)],
+                dash=INDEX_LINE_DASHES[position // len(INDEX_LINE_COLORS) % len(INDEX_LINE_DASHES)],
+                width=2,
+            ),
+            hovertemplate="%{x|%d %b %Y}<br>%{y:.2f}%",
+        )
+    fig.update_layout(
+        yaxis_title=y_label,
+        legend=dict(orientation="h", y=-0.20),
+        margin=dict(l=8, r=8, t=12, b=8),
+    )
+    fig.update_yaxes(ticksuffix="%", zerolinecolor="#C5BDC1")
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def show_market_indices():
+    st.header("Market Indices")
+    st.caption("Compare daily index closes and historical volatility using Yahoo Finance data.")
+    selected = st.multiselect("Indices", list(MARKET_INDICES), default=DEFAULT_INDICES)
+    period = st.selectbox("History", list(INDEX_PERIODS), index=2)
+    if not selected:
+        st.info("Select at least one index to compare.")
+        return
+
+    performance = {}
+    volatility = {}
+    summary = []
+    for name in selected:
+        symbol = MARKET_INDICES[name]
+        try:
+            closes = load_index_closes(symbol, INDEX_PERIODS[period])
+        except Exception:
+            st.warning(f"Yahoo Finance could not load {name} ({symbol}). Try again later.")
+            continue
+        if closes.empty:
+            st.warning(f"No closing prices available for {name} ({symbol}) in this period.")
+            continue
+
+        change = (closes / closes.iloc[0] - 1) * 100
+        daily_returns = closes.pct_change()
+        rolling_volatility = daily_returns.rolling(20).std() * 100
+        performance[name] = change
+        volatility[name] = rolling_volatility
+        summary.append({
+            "Index": name,
+            "From": closes.index[0].date(),
+            "Through": closes.index[-1].date(),
+            "Close (points)": closes.iloc[-1],
+            "Change (%)": change.iloc[-1],
+            "Daily volatility (%)": rolling_volatility.iloc[-1],
+        })
+
+    if not summary:
+        return
+
+    st.dataframe(
+        pd.DataFrame(summary).round(2),
+        hide_index=True,
+    )
+    st.subheader("Change over the selected period (%)")
+    st.caption("Each index starts at 0% on its first available session. Changes use the published index series without currency conversion.")
+    show_index_chart(pd.DataFrame(performance).sort_index(), "Price change")
+    st.subheader("Historical daily volatility (%)")
+    st.caption("Rolling standard deviation of daily price returns over 20 trading sessions.")
+    volatility_history = pd.DataFrame(volatility).sort_index()
+    if volatility_history.notna().any().any():
+        show_index_chart(volatility_history, "Daily volatility")
+    else:
+        st.info("Volatility requires at least 21 closing prices.")
+
+
+view = st.sidebar.radio("View", ["Company Analysis", "Market Indices"])
+if view == "Market Indices":
+    show_market_indices()
+    st.stop()
+
+
+st.markdown("""
+Explore ESG scores and daily volatility forecasts for US stocks. The model was trained on S&P 500 companies.
+
+**Data and model**  
 - ESG data comes from 2022-2023.  
 - Volatility is calculated using the most recent price data from Yahoo Finance, ensuring predictions reflect current market conditions.  
 - Predictions are **experimental** and for demonstration purposes, but show potential for understanding ESG vs risk.  
@@ -171,11 +296,11 @@ if df_ticker is None or df_ticker.empty:
 
 ## TABS
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    ":office: Company Overview",
-    ":earth_africa: ESG vs Volatility",
-    ":crystal_ball: Prediction",
-    ":briefcase: Portfolio Simulation",
-    ":gear: Model Performance"
+    "Company Overview",
+    "ESG vs Volatility",
+    "Prediction",
+    "Portfolio Simulation",
+    "Model Performance"
 ])
 
 ## TAB 1 - Company Overview
@@ -195,8 +320,7 @@ with tab1:
             "Daily Volatility": [daily_vol],
             "Adj Close": [adj_close]
         })
-        st.dataframe(kpi_data.style.background_gradient(cmap="Greens", subset=["ESG Score"])
-                                     .highlight_max(subset=["Adj Close"], color="lightblue"))
+        st.dataframe(kpi_data, hide_index=True)
         # User comments on ESG and Volatility
         if esg_score < 20:
             st.info(f"ESG Score: {esg_score:.2f} (Excellent ESG risk, lower is better)")
@@ -224,11 +348,11 @@ with tab2:
         else:
             vol_mean = None
         if esg_val < 20:
-            color = "green"
+            color = "#5C5963"
         elif esg_val < 40:
-            color = "yellow"
+            color = "#704052"
         else:
-            color = "red"
+            color = "#8C263A"
         fig2 = px.scatter(x=[esg_val], y=[vol_mean], labels={'x': 'ESG Score', 'y': 'Average Volatility'}, color_discrete_sequence=[color])
         fig2.update_traces(marker=dict(size=30))
         st.plotly_chart(fig2, use_container_width=True)
@@ -266,7 +390,7 @@ with tab3:
         if "Daily_Volatility" in df_ticker.columns:
             fig_pred.add_trace(go.Scatter(
                 x=df_ticker.index, y=df_ticker["Daily_Volatility"],
-                mode="lines", name="Volatility", line=dict(color="#1F77B4", width=3)
+                mode="lines", name="Volatility", line=dict(color="#36333A", width=3)
             ))
         else:
             # Generate time series of predictions
@@ -280,7 +404,7 @@ with tab3:
             y_pred_series = model.predict(X_selected)
             fig_pred.add_trace(go.Scatter(
                 x=df_ticker.index, y=y_pred_series,
-                mode="lines", name="Predicted Volatility", line=dict(color="#FF7F0E", width=3)
+                mode="lines", name="Predicted Volatility", line=dict(color="#8C263A", width=3)
             ))
         st.plotly_chart(fig_pred, use_container_width=True)
         if preds is not None and len(preds) > 0:
